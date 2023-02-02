@@ -1,0 +1,21 @@
+---
+title: "tobanton.eu"
+---
+
+This is a Quarto website.
+
+To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+
+```{r}
+1 + 1
+```
+
+# Math
+
+Henlo. This is Math.
+
+$$\sigma^2$$
+
+# Linkin
+
+[gimme that url](https://google.com/)

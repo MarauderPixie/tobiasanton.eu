@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "tobanton.eu",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n\n\nMath\nHenlo. This is Math.\n\\sigma^2\n\n\nLinkin\ngimme that url"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "skillcheck.html",
+    "href": "skillcheck.html",
+    "title": "Skill Check Comparison",
+    "section": "",
+    "text": "roll_d6 <- function(n_dice, n_rolls, aggr = \"sum\") {\n  try(if(!(aggr %in% c(\"sum\", \"success\", \"none\")))\n    rlang::abort(\"'aggr' must be one of: sum, success, none\"))\n\n  x <- replicate(n_rolls, sample(1:6, n_dice, replace = TRUE))\n\n  if (aggr == \"sum\") {\n    if (n_dice == 1) {\n      return(x)\n    } else {\n      return(apply(x, MARGIN = 2, FUN = sum))\n    }\n  }\n  if (aggr == \"success\") {\n    if (n_dice == 1) {\n      return(ifelse(x > 4, 1, 0))\n    } else {\n      return(apply(ifelse(x > 4, 1, 0), MARGIN = 2, FUN = sum))\n    }\n  }\n  if (aggr == \"none\") {\n    return(x)\n  }\n}"
+  },
+  {
+    "objectID": "skillcheck.html#additional-mechanics",
+    "href": "skillcheck.html#additional-mechanics",
+    "title": "Skill Check Comparison",
+    "section": "Additional Mechanics",
+    "text": "Additional Mechanics\nI guess? Idk yet."
+  },
+  {
+    "objectID": "skillcheck.html#tldr",
+    "href": "skillcheck.html#tldr",
+    "title": "Skill Check Comparison",
+    "section": "tl;dr",
+    "text": "tl;dr\nI wrote this once already, then the IDE just… quit. Now I’m not inclined to repeat myself anytime soon. >=("
+  }
+]
