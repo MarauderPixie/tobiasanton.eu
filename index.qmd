@@ -1,5 +1,5 @@
 ---
-title: "tobanton.eu"
+title: "Tobias Anton"
 ---
 
 This is a Quarto website.
@@ -16,6 +16,6 @@ Henlo. This is Math.
 
 $$\sigma^2$$
 
-# Linkin
+# They see me linkin', they surfin'
 
 [gimme that url](https://google.com/)
