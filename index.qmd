@@ -1,21 +1,43 @@
 ---
-title: "Tobias Anton"
+title: Tobias Anton
+description: AI and Cognitive Psychology
+page-layout: full
+about: 
+  id: hero-heading
+  template: solana
+  image: itsame.jpg
+  links:
+    - icon: github
+      aria-label: GitHub
+      href: https://github.com/marauderpixie
+    - icon: slash-cicle
+      aria-label: osf.io
+      href: https://osf.io/mq7zh
+    - icon: mastodon
+      aria-label: Mastodon
+      href: https://norden.social/@marauderpixie
+    - icon: envelope
+      aria-label: E-Mail
+      href: "mailto:tobanton@uni-osnabrueck.de"
 ---
 
-This is a Quarto website.
+:::{#hero-heading}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+With a big passion of telling stories with data, I'm especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen & paper RPGs.
 
-```{r}
-1 + 1
-```
 
-# Math
+## Education
 
-Henlo. This is Math.
+**M. Sc. Cogntive Science** | Artificial Intelligence & Cognitive Psychology  
+Universität Osnabrück | Oct 2018 - Dec 2022
 
-$$\sigma^2$$
+**B. Sc. Psychology** | Work- and Organisational Psychology and Neuroscience  
+Universität Bremen | Oct 2014 - June 2018
 
-# They see me linkin', they surfin'
+## Experience
 
-[gimme that url](https://google.com/)
+Advanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021
+
+Quantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018
+
+:::

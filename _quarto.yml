@@ -3,13 +3,29 @@ project:
 
 website:
   title: "Tobias Anton"
+  search: false
+  site-url: https://tobiasanton.eu
+  page-footer:
+    center: --- All Rites Reversed. Beware of Sleestak! ---
   navbar:
+    background: "#168A84"
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: packages.qmd
+        text: R Packages
       - href: skillcheck.qmd
         text: Playground
+    right:
+      - icon: github
+        aria-label: GitHub
+        href: https://github.com/marauderpixie
+      - icon: mastodon
+        aria-label: Mastodon
+        href: https://norden.social/@marauderpixie
+      - icon: envelope
+        aria-label: E-Mail
+        href: "mailto:tobanton@uni-osnabrueck.de"
 
 format:
   html:
@@ -19,7 +35,7 @@ format:
     css: styles.css
     toc: true
     smooth-scroll: true
-    html-math-method: katex
     link-external-newwindow: true
 
-editor: visual
+execute:
+  freeze: auto

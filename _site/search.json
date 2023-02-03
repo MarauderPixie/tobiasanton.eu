@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tobias Anton",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n\n\nMath\nHenlo. This is Math.\n\\sigma^2\n\n\nThey see me linkin’, they surfin’\ngimme that url"
+    "text": "With a big passion of telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen & paper RPGs.\n\n\nM. Sc. Cogntive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018\n\n\n\nAdvanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021\nQuantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018"
   },
   {
     "objectID": "about.html",
@@ -18,7 +18,7 @@
     "href": "skillcheck.html",
     "title": "Skill Check Comparison",
     "section": "",
-    "text": "roll_d6 <- function(n_dice, n_rolls, aggr = \"sum\") {\n  try(if(!(aggr %in% c(\"sum\", \"success\", \"none\")))\n    rlang::abort(\"'aggr' must be one of: sum, success, none\"))\n\n  x <- replicate(n_rolls, sample(1:6, n_dice, replace = TRUE))\n\n  if (aggr == \"sum\") {\n    if (n_dice == 1) {\n      return(x)\n    } else {\n      return(apply(x, MARGIN = 2, FUN = sum))\n    }\n  }\n  if (aggr == \"success\") {\n    if (n_dice == 1) {\n      return(ifelse(x > 4, 1, 0))\n    } else {\n      return(apply(ifelse(x > 4, 1, 0), MARGIN = 2, FUN = sum))\n    }\n  }\n  if (aggr == \"none\") {\n    return(x)\n  }\n}"
+    "text": "I wrote this once already, then the IDE just… quit. Now I’m not inclined to repeat myself anytime soon. >=("
   },
   {
     "objectID": "skillcheck.html#additional-mechanics",
@@ -33,5 +33,19 @@
     "title": "Skill Check Comparison",
     "section": "tl;dr",
     "text": "tl;dr\nI wrote this once already, then the IDE just… quit. Now I’m not inclined to repeat myself anytime soon. >=("
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "R Packages",
+    "section": "",
+    "text": "A convenient way to access the spotify API in bulk in a tidyverse-y way. This package never got around to find a convenient way to initialize thing"
+  },
+  {
+    "objectID": "packages.html#ddater",
+    "href": "packages.html#ddater",
+    "title": "R Packages",
+    "section": "ddateR",
+    "text": "ddateR\nHail Eris! A perpetual date converter from the gregorian to the poee calendar. Basically an R implementation of the ddate function from util-linux."
   }
 ]
