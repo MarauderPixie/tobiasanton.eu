@@ -32,11 +32,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -97,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="mailto:tobanton@uni-osnabrueck.de"><i class="bi bi-envelope" role="img" aria-label="E-Mail">
+    <a class="nav-link" href="mailto:tobanton@uni-osnabrueck.de"><i class="bi bi-envelope-fill" role="img" aria-label="E-Mail">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -133,26 +137,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="quarto-title-meta">
   </div>
-</header> <div class="about-links">
-  <a href="https://github.com/marauderpixie" class="about-link">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text"></span>
-  </a>
-  <a href="https://osf.io/mq7zh" class="about-link">
-    <i class="bi bi-slash-cicle"></i>
-     <span class="about-link-text"></span>
-  </a>
-  <a href="https://norden.social/@marauderpixie" class="about-link">
-    <i class="bi bi-mastodon"></i>
-     <span class="about-link-text"></span>
-  </a>
-  <a href="mailto:tobanton@uni-osnabrueck.de" class="about-link">
-    <i class="bi bi-envelope"></i>
-     <span class="about-link-text"></span>
-  </a>
-</div>
+</header> 
       <div class="about-contents"><div id="hero-heading">
-<p>With a big passion of telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen &amp; paper RPGs.</p>
+<div class="about-links">
+<p><a href="https://osf.io/mq7zh"><i class="ai  ai-osf ai-2x" title="" style="color:"></i></a> <a href="https://www.linkedin.com/in/tobias-anton-a163a4252/"><i class="fa-brands fa-linkedin fa-2x" aria-label="linkedin"></i></a> <a href="https://github.com/marauderpixie"><i class="fa-brands fa-github fa-2x" aria-label="github"></i></a> <a href="https://norden.social/@marauderpixie"><i class="fa-brands fa-mastodon fa-2x" aria-label="mastodon"></i></a> <a href="mailto:tobanton@uni-osnabrueck.de"><i class="fa-solid fa-envelope fa-2x" aria-label="envelope"></i></a></p>
+</div>
+<p>With a passion for telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen &amp; paper RPGs.</p>
 <section id="education" class="level2">
 <h2 data-anchor-id="education">Education</h2>
 <p><strong>M. Sc. Cogntive Science</strong> | Artificial Intelligence &amp; Cognitive Psychology<br>
@@ -286,7 +276,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  let localAlternateSentinel = 'alternate';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 

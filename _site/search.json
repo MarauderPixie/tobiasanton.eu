@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Tobias Anton",
     "section": "",
-    "text": "With a big passion of telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen & paper RPGs.\n\n\nM. Sc. Cogntive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018\n\n\n\nAdvanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021\nQuantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018"
+    "text": "With a passion for telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen & paper RPGs.\n\n\nM. Sc. Cogntive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018\n\n\n\nAdvanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021\nQuantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018"
   },
   {
     "objectID": "about.html",
@@ -47,5 +47,47 @@
     "title": "R Packages",
     "section": "ddateR",
     "text": "ddateR\nHail Eris! A perpetual date converter from the gregorian to the poee calendar. Basically an R implementation of the ddate function from util-linux."
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "Curriculum Vitae",
+    "section": "",
+    "text": "github.com/marauderpixie\n tobiasanton.eu\n\n\n\n\n\nStatistical programming, analysis, and modeling\nR: Analysis, data management, package development and visualization\nReproducible reporting and interactive app development (shiny, RMarkdown)\nVersion control (git, GitHub) and CI/CD (Travis CI, GitHub Actions)\nBasics in SAS, SQL\n\n\n\n\nGerman (Native)\nEnglish (Fluent)"
+  },
+  {
+    "objectID": "cv.html#title",
+    "href": "cv.html#title",
+    "title": "Curriculum Vitae",
+    "section": "Tobias Anton",
+    "text": "Tobias Anton"
+  },
+  {
+    "objectID": "cv.html#education",
+    "href": "cv.html#education",
+    "title": "Curriculum Vitae",
+    "section": "Education",
+    "text": "Education\n\nM. Sc. in Medical Biometry / Biostatistics\nUniversity of Bremen\nBremen, Germany\n2021\nThesis: A Comparison of Deep Learning Models for Energy Expenditure Prediction in Preschoolers\nLeibniz Institute for Prevention Research and Epidemiology - BIPS\n\n\nB. A. in Public Health\nUniversity of Bremen\nBremen, Germany\n2018\nThesis: Detection of Concomitant Use of Medications in GePaRD\nLeibniz Institute for Prevention Research and Epidemiology - BIPS"
+  },
+  {
+    "objectID": "cv.html#work",
+    "href": "cv.html#work",
+    "title": "Curriculum Vitae",
+    "section": "Work",
+    "text": "Work\n\nInternship: Biometry\nLeibniz Institute for Prevention Research and Epidemiology - BIPS\nBremen, Germany\n2019\n\nCreation of a handout on the topic of count data and modeling approaches\nDescriptive tables for validation purposes in the context of an ongoing study\n\n\n\nStudent assistant\nCompetence Center for Clinical Trials (KKSB)\nBremen, Germany\n2019\n\nSupport during the analysis of study data\nDescriptive tables\nExploratory linear regression modeling\n\n\n\nInternship: Biometry, Epidemiology\nLeibniz Institute for Prevention Research and Epidemiology - BIPS\nBremen, Germany\n2016 - 2017\n\nCreation of an R / Shiny application for interactive data validation\nData management and descriptive statistics"
+  },
+  {
+    "objectID": "cv.html#teaching",
+    "href": "cv.html#teaching",
+    "title": "Curriculum Vitae",
+    "section": "Teaching",
+    "text": "Teaching\n\nTutor for quantitative methods\nUniversity of Bremen\nBremen, Germany\n\nTutorials for first and second semester undergraduates in psychology\nBasics of descriptive and inferential statistics\nApplication of these contents using R & RStudio\nYearly course “Introduction to R”\n\n2014 - 2018"
+  },
+  {
+    "objectID": "cv.html#publications",
+    "href": "cv.html#publications",
+    "title": "Curriculum Vitae",
+    "section": "Publications",
+    "text": "Publications\n\nGridsampler: A Simulation Tool to Determine the Required Sample Size for Repertory Grid Studies\nImplementation of the user interface in Shiny\nBremen, Germany\n2016\nHeckmann, M. and Burk, L., 2017. Gridsampler – A Simulation Tool to Determine the Required Sample Size for Repertory Grid Studies. Journal of Open Research Software, 5(1), p.2. DOI: http://doi.org/10.5334/jors.150"
   }
 ]

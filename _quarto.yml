@@ -23,15 +23,15 @@ website:
       - icon: mastodon
         aria-label: Mastodon
         href: https://norden.social/@marauderpixie
-      - icon: envelope
+      - icon: envelope-fill
         aria-label: E-Mail
         href: "mailto:tobanton@uni-osnabrueck.de"
 
 format:
   html:
     theme:
-      light: darkly
       dark: darkly
+      light: litera
     css: styles.css
     toc: true
     smooth-scroll: true

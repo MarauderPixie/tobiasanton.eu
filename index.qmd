@@ -6,24 +6,40 @@ about:
   id: hero-heading
   template: solana
   image: itsame.jpg
-  links:
-    - icon: github
-      aria-label: GitHub
-      href: https://github.com/marauderpixie
-    - icon: slash-cicle
-      aria-label: osf.io
-      href: https://osf.io/mq7zh
-    - icon: mastodon
-      aria-label: Mastodon
-      href: https://norden.social/@marauderpixie
-    - icon: envelope
-      aria-label: E-Mail
-      href: "mailto:tobanton@uni-osnabrueck.de"
+  # links:
+  #   - icon: github
+  #     aria-label: GitHub
+  #     href: https://github.com/marauderpixie
+  #   - icon: slash-circle
+  #     aria-label: osf.io
+  #     href: https://osf.io/mq7zh
+  #   - icon: linkedin
+  #     aria-label: linkedIn
+  #     href: https://www.linkedin.com/in/tobias-anton-a163a4252/
+  #   - icon: mastodon
+  #     aria-label: Mastodon
+  #     href: https://norden.social/@marauderpixie
+  #   - icon: envelope
+  #     aria-label: E-Mail
+  #     href: "mailto:tobanton@uni-osnabrueck.de"
 ---
 
 :::{#hero-heading}
 
-With a big passion of telling stories with data, I'm especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Apart from that I just enjoy the collaborative storytelling that are tabletop and pen & paper RPGs.
+::: {.about-links}
+[{{< ai osf size=2x >}}](https://osf.io/mq7zh)
+[{{< fa brands linkedin size=2x >}}](https://www.linkedin.com/in/tobias-anton-a163a4252/)
+[{{< fa brands github size=2x >}}](https://github.com/marauderpixie)
+[{{< fa brands mastodon size=2x >}}](https://norden.social/@marauderpixie)
+[{{< fa solid envelope size=2x >}}](mailto:tobanton@uni-osnabrueck.de)
+:::
+
+With a passion for telling stories with data, I'm especially interested 
+in data visualisation and the psychological and perceptual pitfalls thereof. 
+Apart from that I just enjoy the collaborative storytelling that are tabletop 
+and pen & paper RPGs.
+
+
 
 
 ## Education
