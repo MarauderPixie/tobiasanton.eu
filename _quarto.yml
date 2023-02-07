@@ -1,5 +1,10 @@
 project:
   type: website
+  render:
+    - index.qmd
+  resources:
+    - cv.html
+    - cv_files
 
 website:
   title: "Tobias Anton"
@@ -12,6 +17,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: cv.html
+        text: Resumé
       - href: packages.qmd
         text: R Packages
       - href: skillcheck.qmd
@@ -32,6 +39,8 @@ format:
     theme:
       dark: darkly
       light: litera
+    mainfont: Klavika
+    monofont: Fira Code
     css: styles.css
     toc: true
     smooth-scroll: true

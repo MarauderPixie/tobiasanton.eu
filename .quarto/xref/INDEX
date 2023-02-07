@@ -10,5 +10,11 @@
   },
   "packages.qmd": {
     "packages.html": "1b4cbf7a"
+  },
+  "cv.Rmd": {
+    "cv.html": "cd3537b7"
+  },
+  "sugr-prep.qmd": {
+    "sugr-prep.html": "188edf72"
   }
 }

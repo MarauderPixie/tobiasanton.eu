@@ -1,1 +1,8 @@
 /* css styles */
+.tldr {
+  background-color: #222D32;
+  border: 2px solid #168A84;
+  border-radius: 7px;
+  padding: 14px 12px 1px 20px;
+  margin: 12px;
+}

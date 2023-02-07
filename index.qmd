@@ -1,6 +1,7 @@
 ---
 title: Tobias Anton
 description: AI and Cognitive Psychology
+date: "`r format(Sys.time(), '%d. %b, %Y')`"
 page-layout: full
 about: 
   id: hero-heading

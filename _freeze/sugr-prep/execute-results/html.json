@@ -1,0 +1,16 @@
+{
+  "hash": "f06e6dcee7ec8a0b9c9d5d7e0079b1aa",
+  "result": {
+    "markdown": "---\ntitle: \"sugr\"\nsubtitle: \"Preparation of Continouos Glucose Measurements for usage in a shiny app\"\nauthor: \"Tobias Anton\"\ndate: \"07. Feb, 2023\"\n---\n\n\n::: tldr\n**tl;dr:** CGMs are a great source of (timeseries) data to tinker with. Here I describe the data of Medtronics systems and the process of cleaning up and preparing that data in order to use it in a shiny app.\n:::\n\n# Abstract\n\nI'm a type I diabetic and therefore use an insulin pump and a connected CGM - continouos glucose measurement - system from Medtronic. The company kindly provides access to the raw data, even though only by the use of propriatory software and a web interface. This means I can't access the data through some sort of API to automate the collection thereof and have to run through that process manually on a regular basis.\n\nApart from that minor nuisance what's more important though is the fact that the data needs some touch-ups before you can actually use them:\n\n- data from the pump and the GCM sensor are basically two different datasets but kept in the same csv\n- while the time interval is 5 minutes (a reading from the GCM), not much else is going on otherwise\n- direct blood glucose measurements, insulin doses, etc. are delivered _whenever_ and not on-point of the 5min intervals\n\nHere I'll walk through the process of cleaning that up.\n\n# The Raw Data\n\nFirst let's have a look at what we've got here:\n\n\n::: {.cell}\n\n:::\n",
+    "supporting": [
+      "sugr-prep_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
