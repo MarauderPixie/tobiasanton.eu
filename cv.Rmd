@@ -14,7 +14,7 @@ Aside
 ================================================================================
 
 
-![Tobias Anton](itsame.jpg){width=80%}
+![Tobias Anton](itsame.jpg){width=90%}
 
 
 Contact Info {#contact}
@@ -52,7 +52,7 @@ Main
 Tobias Anton {#title}
 --------------------------------------------------------------------------------
 
-### Currently searching for a full-time position as Data Sciencist
+### Currently searching for a full-time position as Data Scientist
 
 After finishing my master's I'm thrilled to dive into the vast field of 
 data science. My strong suits are the planning and execution of rigorous 
