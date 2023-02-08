@@ -16,5 +16,14 @@
   },
   "sugr-prep.qmd": {
     "sugr-prep.html": "188edf72"
+  },
+  "projects/skillcheck.qmd": {
+    "skillcheck.html": "fab5407b"
+  },
+  "projects/sugr-prep.qmd": {
+    "sugr-prep.html": "d87fe037"
+  },
+  "projects.qmd": {
+    "projects.html": "6b8fdefb"
   }
 }

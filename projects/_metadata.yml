@@ -1,0 +1,5 @@
+# see https://quarto.org/docs/projects/code-execution.html#freeze
+freeze: auto
+
+# see https://quarto.org/docs/authoring/title-blocks.html
+title-block-banner: true

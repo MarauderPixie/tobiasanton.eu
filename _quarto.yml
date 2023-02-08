@@ -1,7 +1,8 @@
 project:
   type: website
   render:
-    - index.qmd
+    - "*.qmd"
+    - "!cv.Rmd"
   resources:
     - cv.html
     - cv_files
@@ -19,10 +20,10 @@ website:
         text: Home
       - href: cv.html
         text: CV
+      - href: projects.qmd
+        text: Projects
       - href: packages.qmd
         text: R Packages
-      - href: skillcheck.qmd
-        text: Playground
     right:
       - icon: github
         aria-label: GitHub

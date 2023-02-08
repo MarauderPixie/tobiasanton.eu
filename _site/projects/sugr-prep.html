@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tobias">
+<meta name="dcterms.date" content="2023-02-08">
+
+<title>Tobias Anton - sugr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Tobias Anton</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cv.html">
+ <span class="menu-text">CV</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects.html">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../packages.html">
+ <span class="menu-text">R Packages</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/marauderpixie"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://norden.social/@marauderpixie"><i class="bi bi-mastodon" role="img" aria-label="Mastodon">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:tobanton@uni-osnabrueck.de"><i class="bi bi-envelope-fill" role="img" aria-label="E-Mail">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">sugr</h1>
+            <p class="subtitle lead">Preparation of Continouos Glucose Measurements for usage in a shiny app</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tobias </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 8, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#reading-the-raw-data" id="toc-reading-the-raw-data" class="nav-link" data-scroll-target="#reading-the-raw-data">Reading the Raw Data</a></li>
+  <li><a href="#the-clean-up-procedure" id="toc-the-clean-up-procedure" class="nav-link" data-scroll-target="#the-clean-up-procedure">The Clean-up Procedure</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="tldr">
+<p><strong>tl;dr:</strong> CGMs are a great source of (timeseries) data to tinker with. Here I describe the process of cleaning up and preparing the data of Medtronics systems in order to use it in a shiny app.</p>
+</div>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>I’m a type I diabetic and therefore use an insulin pump and a connected CGM - continouos glucose measurement - system from Medtronic. The company kindly provides access to the raw data, even though only by the use of propriatory software and a web interface. This means I can’t access the data through some sort of API to automate the collection thereof and have to run through that process manually on a regular basis.</p>
+<p>Apart from that minor nuisance what’s more important though is the fact that the data needs some touch-ups before you can actually use them:</p>
+<ul>
+<li>data from the pump and the GCM sensor are basically two different datasets but kept in the same csv</li>
+<li>while the time interval is 5 minutes (a reading from the GCM), not much else is going on otherwise</li>
+<li>direct blood glucose measurements, insulin doses, etc. are delivered <em>whenever</em> and not on-point of the 5min intervals</li>
+</ul>
+<p>Here I’ll walk through the process of cleaning that up.</p>
+</section>
+<section id="reading-the-raw-data" class="level1">
+<h1>Reading the Raw Data</h1>
+<p>First let’s have a look at what we’ve got here. To save ourselves some headaches, I already put all the settings in all the places such that we get a nice tabular dataset. Most should be pretty self-explanatory: entries are delimited by a semicolon, the date format has to be sepcified and so on. I set <code>skip = 6</code> because, well, that’s where the actual csv entries actually begin. Beforehand it’s just some unstructured data about the device, patient, date of recordng, etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data_raw <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/sugr/carelink-export-220217.csv"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">Date =</span> <span class="fu">col_date</span>(<span class="at">format =</span> <span class="st">"%Y/%m/%d"</span>), </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Time =</span> <span class="fu">col_time</span>(<span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>), </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...51`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 51
+  Index Date       Time     New Device…¹ BG So…² BG Re…³ Linke…⁴ Basal…⁵ Temp …⁶
+  &lt;dbl&gt; &lt;date&gt;     &lt;time&gt;   &lt;lgl&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;lgl&gt;  
+1     0 2022-02-17 11:07:38 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
+2     1 2022-02-17 11:02:39 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
+3     2 2022-02-17 11:00:00 NA           &lt;NA&gt;         NA &lt;NA&gt;       0.65 NA     
+4     3 2022-02-17 10:57:42 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
+5     4 2022-02-17 10:52:42 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
+6     5 2022-02-17 10:37:45 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
+# … with 42 more variables: `Temp Basal Type` &lt;lgl&gt;,
+#   `Temp Basal Duration (h:mm:ss)` &lt;lgl&gt;, `Bolus Type` &lt;chr&gt;,
+#   `Bolus Volume Selected (U)` &lt;dbl&gt;, `Bolus Volume Delivered (U)` &lt;dbl&gt;,
+#   `Bolus Duration (h:mm:ss)` &lt;lgl&gt;, `Prime Type` &lt;chr&gt;,
+#   `Prime Volume Delivered (U)` &lt;dbl&gt;, Alarm &lt;chr&gt;, Suspend &lt;chr&gt;,
+#   Rewind &lt;lgl&gt;, `BWZ Estimate (U)` &lt;dbl&gt;, `BWZ Target High BG (mg/dL)` &lt;lgl&gt;,
+#   `BWZ Target Low BG (mg/dL)` &lt;lgl&gt;, `BWZ Carb Ratio (g/U)` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>Okay, so, a <strong>Warning</strong>. What’s that about?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(data_raw) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>file) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 112 × 4
+      row   col expected           actual                             
+    &lt;int&gt; &lt;int&gt; &lt;chr&gt;              &lt;chr&gt;                              
+  1   115    41 1/0/T/F/TRUE/FALSE 240                                
+  2   493    22 1/0/T/F/TRUE/FALSE 120                                
+  3   493    23 1/0/T/F/TRUE/FALSE 90                                 
+  4   493    25 1/0/T/F/TRUE/FALSE 40                                 
+  5   493    30 1/0/T/F/TRUE/FALSE 2,10                               
+  6   505    22 1/0/T/F/TRUE/FALSE 120                                
+  7   505    23 1/0/T/F/TRUE/FALSE 90                                 
+  8   505    25 1/0/T/F/TRUE/FALSE 40                                 
+  9   505    30 1/0/T/F/TRUE/FALSE 0,0                                
+ 10   922    22 1/0/T/F/TRUE/FALSE 120                                
+ 11   922    23 1/0/T/F/TRUE/FALSE 90                                 
+ 12   922    25 1/0/T/F/TRUE/FALSE 40                                 
+ 13   922    30 1/0/T/F/TRUE/FALSE 0,20                               
+ 14   933    22 1/0/T/F/TRUE/FALSE 160                                
+ 15   933    23 1/0/T/F/TRUE/FALSE 120                                
+ 16   933    25 1/0/T/F/TRUE/FALSE 40                                 
+ 17   933    30 1/0/T/F/TRUE/FALSE 4,20                               
+ 18   937    22 1/0/T/F/TRUE/FALSE 160                                
+ 19   937    23 1/0/T/F/TRUE/FALSE 120                                
+ 20   937    25 1/0/T/F/TRUE/FALSE 40                                 
+ 21   937    30 1/0/T/F/TRUE/FALSE 3,10                               
+ 22   944    22 1/0/T/F/TRUE/FALSE 160                                
+ 23   944    23 1/0/T/F/TRUE/FALSE 120                                
+ 24   944    25 1/0/T/F/TRUE/FALSE 40                                 
+ 25   944    30 1/0/T/F/TRUE/FALSE 2,40                               
+ 26   955    22 1/0/T/F/TRUE/FALSE 120                                
+ 27   955    23 1/0/T/F/TRUE/FALSE 90                                 
+ 28   955    25 1/0/T/F/TRUE/FALSE 40                                 
+ 29   955    30 1/0/T/F/TRUE/FALSE 0,20                               
+ 30   981    48 1/0/T/F/TRUE/FALSE USER_INITIATED                     
+ 31  1002    22 1/0/T/F/TRUE/FALSE 120                                
+ 32  1002    23 1/0/T/F/TRUE/FALSE 90                                 
+ 33  1002    25 1/0/T/F/TRUE/FALSE 40                                 
+ 34  1002    30 1/0/T/F/TRUE/FALSE 0,0                                
+ 35  1417    20 1/0/T/F/TRUE/FALSE Rewind                             
+ 36  2715    22 1/0/T/F/TRUE/FALSE 120                                
+ 37  2715    23 1/0/T/F/TRUE/FALSE 90                                 
+ 38  2715    25 1/0/T/F/TRUE/FALSE 40                                 
+ 39  2715    30 1/0/T/F/TRUE/FALSE 1,30                               
+ 40  2726    22 1/0/T/F/TRUE/FALSE 120                                
+ 41  2726    23 1/0/T/F/TRUE/FALSE 90                                 
+ 42  2726    25 1/0/T/F/TRUE/FALSE 40                                 
+ 43  2726    30 1/0/T/F/TRUE/FALSE 0,0                                
+ 44  2746    22 1/0/T/F/TRUE/FALSE 140                                
+ 45  2746    23 1/0/T/F/TRUE/FALSE 90                                 
+ 46  2746    25 1/0/T/F/TRUE/FALSE 40                                 
+ 47  2746    30 1/0/T/F/TRUE/FALSE 0,80                               
+ 48  2760    22 1/0/T/F/TRUE/FALSE 120                                
+ 49  2760    23 1/0/T/F/TRUE/FALSE 90                                 
+ 50  2760    25 1/0/T/F/TRUE/FALSE 40                                 
+ 51  2760    30 1/0/T/F/TRUE/FALSE 5,10                               
+ 52  2762    22 1/0/T/F/TRUE/FALSE 120                                
+ 53  2762    23 1/0/T/F/TRUE/FALSE 90                                 
+ 54  2762    25 1/0/T/F/TRUE/FALSE 40                                 
+ 55  2762    30 1/0/T/F/TRUE/FALSE 5,10                               
+ 56  2768    22 1/0/T/F/TRUE/FALSE 140                                
+ 57  2768    23 1/0/T/F/TRUE/FALSE 90                                 
+ 58  2768    25 1/0/T/F/TRUE/FALSE 40                                 
+ 59  2768    30 1/0/T/F/TRUE/FALSE 4,80                               
+ 60  2772    22 1/0/T/F/TRUE/FALSE 140                                
+ 61  2772    23 1/0/T/F/TRUE/FALSE 90                                 
+ 62  2772    25 1/0/T/F/TRUE/FALSE 40                                 
+ 63  2772    30 1/0/T/F/TRUE/FALSE 0,0                                
+ 64  2779    48 1/0/T/F/TRUE/FALSE USER_INITIATED                     
+ 65  2955    37 1/0/T/F/TRUE/FALSE User Request                       
+ 66  3286    20 1/0/T/F/TRUE/FALSE Rewind                             
+ 67  3321    37 1/0/T/F/TRUE/FALSE User Request                       
+ 68  3806    37 1/0/T/F/TRUE/FALSE User Request                       
+ 69  4338     1 a double           -------                            
+ 70  4338     2 date like %Y/%m/%d MiniMed 670G MMT-1781              
+ 71  4338     3 time like %H:%M:%S Sensor                             
+ 72  4338     4 1/0/T/F/TRUE/FALSE NG2307024H                         
+ 73  4338     5 51 columns         5 columns                          
+ 74  4339     1 a double           Index                              
+ 75  4339     2 date like %Y/%m/%d Date                               
+ 76  4339     3 time like %H:%M:%S Time                               
+ 77  4339     4 1/0/T/F/TRUE/FALSE New Device Time                    
+ 78  4339     6 a double           BG Reading (mg/dL)                 
+ 79  4339     8 a double           Basal Rate (U/h)                   
+ 80  4339     9 1/0/T/F/TRUE/FALSE Temp Basal Amount                  
+ 81  4339    10 1/0/T/F/TRUE/FALSE Temp Basal Type                    
+ 82  4339    11 1/0/T/F/TRUE/FALSE Temp Basal Duration (h:mm:ss)      
+ 83  4339    13 a double           Bolus Volume Selected (U)          
+ 84  4339    14 a double           Bolus Volume Delivered (U)         
+ 85  4339    15 1/0/T/F/TRUE/FALSE Bolus Duration (h:mm:ss)           
+ 86  4339    17 a double           Prime Volume Delivered (U)         
+ 87  4339    20 1/0/T/F/TRUE/FALSE Rewind                             
+ 88  4339    21 a double           BWZ Estimate (U)                   
+ 89  4339    22 1/0/T/F/TRUE/FALSE BWZ Target High BG (mg/dL)         
+ 90  4339    23 1/0/T/F/TRUE/FALSE BWZ Target Low BG (mg/dL)          
+ 91  4339    24 a double           BWZ Carb Ratio (g/U)               
+ 92  4339    25 1/0/T/F/TRUE/FALSE BWZ Insulin Sensitivity (mg/dL/U)  
+ 93  4339    26 a double           BWZ Carb Input (grams)             
+ 94  4339    27 a double           BWZ BG Input (mg/dL)               
+ 95  4339    28 a double           BWZ Correction Estimate (U)        
+ 96  4339    29 a double           BWZ Food Estimate (U)              
+ 97  4339    30 1/0/T/F/TRUE/FALSE BWZ Active Insulin (U)             
+ 98  4339    32 a double           Sensor Calibration BG (mg/dL)      
+ 99  4339    33 a double           Sensor Glucose (mg/dL)             
+100  4339    34 a double           ISIG Value                         
+101  4339    36 a double           Bolus Number                       
+102  4339    37 1/0/T/F/TRUE/FALSE Bolus Cancellation Reason          
+103  4339    38 a double           BWZ Unabsorbed Insulin Total (U)   
+104  4339    39 a double           Final Bolus Estimate               
+105  4339    41 1/0/T/F/TRUE/FALSE Insulin Action Curve Time          
+106  4339    42 1/0/T/F/TRUE/FALSE Sensor Calibration Rejected Reason 
+107  4339    43 1/0/T/F/TRUE/FALSE Preset Bolus                       
+108  4339    45 1/0/T/F/TRUE/FALSE BLE Network Device                 
+109  4339    46 1/0/T/F/TRUE/FALSE Network Device Associated Reason   
+110  4339    47 1/0/T/F/TRUE/FALSE Network Device Disassociated Reason
+111  4339    48 1/0/T/F/TRUE/FALSE Network Device Disconnected Reason 
+112  4339    50 1/0/T/F/TRUE/FALSE Preset Temp Basal Name             </code></pre>
+</div>
+</div>
+<p>Alright, the first ~70ish are actual parsing errors that lead to empty cells. Not great, but also no entries of huge importance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, as far as I can tell. The rest though result from the circumstance that the file is basically seperated in CGM sensor data and insulin pump data, as mentioned in the beginning. Luckily though, <code>readr</code>/<code>vroom</code> just ignores the two rows where the new table begins - a device description and exactly same column names in the same order as before - and just continues parsing the CGM data. Let’s take a look at those whopping 51 Variables:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 9,236
+Columns: 51
+$ Index                                 &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
+$ Date                                  &lt;date&gt; 2022-02-17, 2022-02-17, 2022-02…
+$ Time                                  &lt;time&gt; 11:07:38, 11:02:39, 11:00:00, 1…
+$ `New Device Time`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BG Source`                           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BG Reading (mg/dL)`                  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Linked BG Meter ID`                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Basal Rate (U/h)`                    &lt;dbl&gt; NA, NA, 0.65, NA, NA, NA, NA, NA…
+$ `Temp Basal Amount`                   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Temp Basal Type`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Temp Basal Duration (h:mm:ss)`       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Type`                          &lt;chr&gt; "Normal", "Normal", NA, "Normal"…
+$ `Bolus Volume Selected (U)`           &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
+$ `Bolus Volume Delivered (U)`          &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
+$ `Bolus Duration (h:mm:ss)`            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Prime Type`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Prime Volume Delivered (U)`          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Alarm                                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Suspend                               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Rewind                                &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Estimate (U)`                    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Target High BG (mg/dL)`          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Target Low BG (mg/dL)`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Carb Ratio (g/U)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Insulin Sensitivity (mg/dL/U)`   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Carb Input (grams)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ BG Input (mg/dL)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Correction Estimate (U)`         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Food Estimate (U)`               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Active Insulin (U)`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Status`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Calibration BG (mg/dL)`       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Glucose (mg/dL)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `ISIG Value`                          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Event Marker`                        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Number`                        &lt;dbl&gt; 236, 235, NA, 234, 233, 232, 231…
+$ `Bolus Cancellation Reason`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Unabsorbed Insulin Total (U)`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Final Bolus Estimate`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Scroll Step Size`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Insulin Action Curve Time`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Calibration Rejected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Preset Bolus`                        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Source`                        &lt;chr&gt; "CLOSED_LOOP_MICRO_BOLUS", "CLOS…
+$ `BLE Network Device`                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Associated Reason`    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Disassociated Reason` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Disconnected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Exception`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Preset Temp Basal Name`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
+</div>
+</div>
+<p>That’s a whole lotta <code>&lt;NA&gt;</code>s! Apart from that, it looks pretty decent already. Here’s what needs to be done still:</p>
+<ul>
+<li>throw out the variables we don’t need (spoiler: most of them)</li>
+<li>clean up the column names</li>
+<li><code>time</code> precision by minutes does absolutely suffice</li>
+<li>a combined <code>datetime</code> column would be nice</li>
+<li>a column of weekdays, too, just for some quality of life improvement</li>
+</ul>
+<p>It also totally makes sense to split pump from CGM data, of course. Since both are structurally identical, we’ll do that after the clean-up.</p>
+</section>
+<section id="the-clean-up-procedure" class="level1">
+<h1>The Clean-up Procedure</h1>
+<p>There are basically three groups of variables:</p>
+<ol type="1">
+<li>those of our main interest, like glucose measurements, insulin dosages, carbohydrate intake, etc</li>
+<li>some that might be of minor interest, but rather when it comes to device usage and diagnostics than actual medical interest, like alarms, suspension and rewind times, etc</li>
+<li>not interesting or useful at all</li>
+</ol>
+<p>For now, we’ll focus on the first type only.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>mostly hard-coded things like ratios or target values that change slightly during a day but stay the same across all days<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/tobiasanton\.eu/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">— All Rites Reversed. Beware of Sleestak! —</div>
+  </div>
+</footer>
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

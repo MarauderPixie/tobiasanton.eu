@@ -1,0 +1,269 @@
+---
+title: "Skill Check Comparison"
+subtitle: "Some dice roll simulations to compare skill check mechanics from various TTRPGs"
+author: "Tobias"
+date: "06. Feb, 2023"
+---
+
+```{r init, include=FALSE}
+library(tidyverse)
+
+theme_set(
+  hrbrthemes::theme_modern_rc(plot_margin = margin(12, 10, 12, 10)) +
+    theme(strip.text = element_text(color = "#e0e0e0"))
+  )
+```
+
+```{r roll_d6, include=FALSE}
+roll_d6 <- function(n_dice, n_rolls, system = "sum") {
+  try(if(!(aggr %in% c("aw", "bitd", "sr", "none")))
+    rlang::abort("'aggr' must be one of: sum, success, none"))
+
+  x <- replicate(n_rolls, sample(1:6, n_dice, replace = TRUE))
+
+  if (system == "aw") {
+    if (n_dice == 1) {
+      return(x)
+    } else {
+      return(apply(x, MARGIN = 2, FUN = sum))
+    }
+  }
+  if (system == "sr") {
+    if (n_dice == 1) {
+      return(ifelse(x > 4, 1, 0))
+    } else {
+      return(apply(ifelse(x > 4, 1, 0), MARGIN = 2, FUN = sum))
+    }
+  }
+  if (aggr == "none") {
+    return(x)
+  }
+}
+```
+
+## tl;dr
+
+I wrote this once already, then the IDE just... quit. Now I'm not inclined to repeat myself anytime soon. \>=(
+
+# Checks from different Systems
+
+Let's take a look at some d6-based games and how they resolve their rolls:
+
+-   **Apocalypse World:** roll 2d6 and add their results; on a 10+ you succeed, on 7-9 you succeed but at a cost and on 6 or less you usually fail
+-   **Blades in the Dark:** roll several d6 (usually 1-4) based on your stats and take the single highest result; you succeed on a 6 and even gain some extra on two 6s (critical success), a 4 or 5 is a partial success similar to the above and on a 1-3 "it's a bad outcome. Things go poorly. You probably don't achieve your goal and you suffer complications, too"[^1]
+-   **Shadowrun:** you roll anything from 1 to 30 dice (usually about 3 to 12 though) and count all 5s, 6s (your successes) and 1s (if more than half of the rolled dice are 1s, you fail spectacularly); there are no baseline thresholds - sometimes you 'roll off' against the GM, sometimes there are rules to dictate the threshold and rather often the GM comes up with some arbitrary number you need to pass
+
+[^1]: quoted from https://bladesinthedark.com/core-system
+
+Additionally there are ways to tinker with the results and alter the player's chances. In **AW** you sometimes flatly add (or substract) numbers to the result. **BitD** gives or takes dice to or from you and the same does **SR**, albeit with more dice.
+
+As you can see, the first two examples are quite similar and pretty straight forward, whereas the third is a whole different kind of beast. This is why I'm writing this: I'll simulate the outcomes of the different approaches and try to find one that *feels shadowrun* but resolves in a distinct way like with the other two.
+
+## Additional Mechanics
+
+I guess? Idk yet.
+
+# Simulations
+
+```{r simz}
+#| include: false
+n_rolls <- 2000
+
+aw_base   <- replicate(n_rolls, sample(1:6, 2, replace = TRUE) |> sum()) %>% 
+  as_tibble() %>% 
+  transmute(
+    `2d6` = value,
+    `2d6 -1` = value - 1,
+    `2d6 +1` = value + 1,
+    `2d6 +2` = value + 2
+  ) %>% 
+  gather() %>% 
+  transmute(
+    game = "AW",
+    roll = key,
+    quality = case_when(
+      value > 9 ~ "success",
+      value > 6 ~ "partial",
+      TRUE ~ "fail"
+    ) 
+  )
+
+bitd_base <- replicate(n_rolls, sample(1:6, 4, replace = TRUE)) %>% 
+  t() %>% 
+  as_tibble() %>% 
+  transmute(
+    `4d6` = pmax(V1, V2, V3, V4),
+    `3d6` = pmax(V1, V2, V3),
+    `2d6` = pmax(V1, V2),
+    `1d6` = pmax(V1)
+  ) %>% 
+  gather() %>% 
+  transmute(
+    game  = "BitD",
+    roll = key,
+    quality = case_when(
+      value == 6 ~ "success",
+      value <= 3 ~ "fail",
+      TRUE ~ "partial"
+    ) 
+  )
+
+pdat <- bind_rows(bitd_base, aw_base) %>% 
+  mutate(
+    conct_raw = paste(game, "-\n", roll),
+    conct = factor(conct_raw, levels = c(
+      "AW -\n 2d6 -1", "BitD -\n 1d6",
+      "AW -\n 2d6", "BitD -\n 2d6",
+      "AW -\n 2d6 +1", "BitD -\n 3d6",
+      "AW -\n 2d6 +2", "BitD -\n 4d6"
+    )),
+    quality = factor(quality) %>% fct_rev()
+  )
+```
+
+This is the interesting part. How do AW and BitD compare and how does SR fit in? I begin with sampling, oh let's just say, `r n_rolls` rolls - where 'a roll' is full skill check instead of single dice rolls. For simplicity, I only make `r n_rolls` rolls for each game once.
+
+```{r plot1}
+#| echo: false
+#| column: body
+#| fig-width: 10
+#| fig-height: 6
+
+ggplot(pdat, aes(conct, fill = quality)) +
+  geom_bar(alpha = .7, color = "#222222") +
+  scale_y_continuous(labels = scales::percent_format(scale = .05)) +
+  scale_fill_manual(values = c("#00cc00", "#ffcc00", "#ff3300")) +
+  labs(x = "Roll Configuration", y = NULL, fill = NULL) +
+  theme(legend.position = "top")
+```
+
+As we can see, the results largely scale up the same, although in *Blades in the Dark* rolls are more forgiving than in *Apocalypse World*; out otherwise, the success rates in BitD are generally a little higher. This suits the general vibes of the games: in BitD, the consequences of failing are more dire overall, therefore it's kinda fair you don't fail too easy or often. Let's take a look at *Shadowrun*, though. First at the raw number of successes (5s and 6s) and then by setting some thresholds to shoehorn everything into three success qualities.
+
+```{r sim_sr}
+#| echo: false
+#| include: false
+
+sr_base <- map(1:16, ~roll_d6(., n_rolls, "sr"))
+names(sr_base) <- paste0(1:16, "d6")
+sr6 <- sr_base %>% 
+  as_tibble() %>% 
+  gather(dice, result) %>% 
+  mutate(
+    dice_lab = factor(dice) |> fct_inorder(),
+    dice_n   = as.numeric(dice_lab),
+    result_neg = dice_n - result
+  )
+
+ggplot(sr6, aes(dice_n, result)) +
+  # facet_wrap(~dice)
+  geom_jitter(width = .3, height = .3,
+              size = .1, alpha = .5)
+
+ggplot(sr6, aes(result)) +
+  facet_wrap(~dice_lab, nrow = 4) +
+  geom_histogram(binwidth = 1, color = "#222222") +
+  labs(
+    y = "Number of rolls", 
+    x = "Number of successes"
+  )
+```
+
+
+## Sequential Cut-Offs
+
+Since it's not possible to have 3 qualites with only one die by Shadowrun standarts (the roll is either a success or not), we'll start with 2d6:
+
+```{r sr_cutoffs1}
+#| echo: false
+#| column: body
+#| fig-width: 10
+#| fig-height: 12
+
+sr6 %>% 
+  mutate(
+    `0/1/2` = case_when(
+      result > 1 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ), 
+    `0/1-2/3` = case_when(
+      result > 2 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `1/2/3` = case_when(
+      result > 2 ~ "success",
+      result < 2 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `1/2-3/4` = case_when(
+      result > 3 ~ "success",
+      result < 2 ~ "fail",
+      TRUE ~ "partial"
+    )
+  ) %>% 
+  pivot_longer(contains("/"), 
+               names_to  = "cutoffs", 
+               values_to = "quality",
+               values_transform = fct_rev) %>% 
+  ggplot(aes(dice_lab, fill = quality)) +
+    facet_wrap(~cutoffs, ncol = 1) +
+    geom_bar(alpha = .7, color = "#222222") +
+    scale_y_continuous(labels = scales::percent_format(scale = .05)) +
+    scale_fill_manual(values = c("#00cc00", "#ffcc00", "#ff3300")) +
+    labs(x = "n Dice", y = NULL, fill = NULL) +
+    theme(legend.position = "top")
+```
+
+
+Ok, maybe we need to zoom in a bit.
+
+```{r sr_cutoffs2}
+#| echo: false
+#| column: body
+#| fig-width: 10
+#| fig-height: 12
+
+sr6 %>% 
+  filter(between(dice_n, 4, 9)) %>% 
+  mutate(
+    `0/1/2` = case_when(
+      result > 1 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `1/2/3` = case_when(
+      result > 2 ~ "success",
+      result < 2 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `0/1-2/3` = case_when(
+      result > 2 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `0/1-3/4` = case_when(
+      result > 3 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `1/2-3/4` = case_when(
+      result > 3 ~ "success",
+      result < 2 ~ "fail",
+      TRUE ~ "partial"
+    )
+  ) %>% 
+  pivot_longer(contains("/"), 
+               names_to  = "cutoffs", 
+               values_to = "quality",
+               values_transform = fct_rev) %>% 
+  ggplot(aes(dice_lab, fill = quality)) +
+    facet_wrap(~cutoffs, ncol = 1) +
+    geom_bar(alpha = .7, color = "#222222") +
+    scale_y_continuous(labels = scales::percent_format(scale = .05)) +
+    scale_fill_manual(values = c("#00cc00", "#ffcc00", "#ff3300")) +
+    labs(x = "n Dice", y = NULL, fill = NULL) +
+    theme(legend.position = "top")
+```
+
+
