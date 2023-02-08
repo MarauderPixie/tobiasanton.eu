@@ -86,6 +86,13 @@ Bremen, Germany
 
 Thesis: _Feedback-modulierte quasi-realistische binäre Entscheidungen in einem wetterbasierten Kontext_
 
+### Abendgymnasium Sophie Scholl
+
+**High School Diploma** / Abitur 
+
+Osnabrück, Germany
+
+2014
 
 Professional Experience {data-icon=suitcase}
 --------------------------------------------------------------------------------
@@ -115,6 +122,14 @@ at Fachbereich 11 of Uni Bremen
 Bremen, Germany
 
 2015 - 2021
+
+### Stagehand
+
+Städtische Bühnen Osnabrück, among others
+
+Osnabrück, Germany
+
+until 2016
 
 
 <!-- Additional Skills {data-icon=screwdriver-wrench}
