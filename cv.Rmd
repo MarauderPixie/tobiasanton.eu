@@ -52,9 +52,13 @@ Main
 Tobias Anton {#title}
 --------------------------------------------------------------------------------
 
-### some introductory line I haven't thought of yet
+### Currently searching for a full-time position as Data Sciencist
 
-Hier kommt ein total motivierter Text hin, in dem ich entweder was zu mir sage oder wonach ich eigentlich suche. If you are interested in my background and skills, please feel free to contact me.
+After finishing my master's I'm thrilled to dive into the vast field of 
+data science. My strong suits are the planning and execution of rigorous 
+experimental setups, the exploration and analysis of structured and unstructured 
+data as well as the automated reporting on the results. If you are interested in 
+my background and skills, please feel free to contact me.
 
 
 Education {data-icon=graduation-cap data-concise=true}
@@ -112,3 +116,24 @@ Bremen, Germany
 
 2015 - 2021
 
+
+<!-- Additional Skills {data-icon=screwdriver-wrench}
+--------------------------------------------------------------------------------
+
+### Social Skills
+
+- Small group management  
+- Project management
+
+anywhere, rly
+
+ongoing
+
+### Software Skills
+
+<i class="fa-brands fa-vuejs"></i> Vue.js | <i class="fa fa-css3"></i> CSS | <i class="fa brands fa-git-alt"></i> Git 
+
+The Internet
+
+ongoing
+-->
