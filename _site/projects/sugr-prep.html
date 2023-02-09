@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tobias">
-<meta name="dcterms.date" content="2023-02-08">
+<meta name="dcterms.date" content="2023-02-10">
 
-<title>Tobias Anton - sugr</title>
+<title>Tobias Anton - sugr: data preparation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -182,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">sugr</h1>
+      <h1 class="title">sugr: data preparation</h1>
             <p class="subtitle lead">Preparation of Continouos Glucose Measurements for usage in a shiny app</p>
                       </div>
   </div>
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 8, 2023</p>
+        <p class="date">February 10, 2023</p>
       </div>
     </div>
     
@@ -218,7 +218,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
   <li><a href="#reading-the-raw-data" id="toc-reading-the-raw-data" class="nav-link" data-scroll-target="#reading-the-raw-data">Reading the Raw Data</a></li>
-  <li><a href="#the-clean-up-procedure" id="toc-the-clean-up-procedure" class="nav-link" data-scroll-target="#the-clean-up-procedure">The Clean-up Procedure</a></li>
+  <li><a href="#the-clean-up-procedure" id="toc-the-clean-up-procedure" class="nav-link" data-scroll-target="#the-clean-up-procedure">The Clean-up Procedure</a>
+  <ul class="collapse">
+  <li><a href="#codebook" id="toc-codebook" class="nav-link" data-scroll-target="#codebook">Codebook</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -279,7 +282,8 @@ e.g.:
 #   `Bolus Duration (h:mm:ss)` &lt;lgl&gt;, `Prime Type` &lt;chr&gt;,
 #   `Prime Volume Delivered (U)` &lt;dbl&gt;, Alarm &lt;chr&gt;, Suspend &lt;chr&gt;,
 #   Rewind &lt;lgl&gt;, `BWZ Estimate (U)` &lt;dbl&gt;, `BWZ Target High BG (mg/dL)` &lt;lgl&gt;,
-#   `BWZ Target Low BG (mg/dL)` &lt;lgl&gt;, `BWZ Carb Ratio (g/U)` &lt;dbl&gt;, …</code></pre>
+#   `BWZ Target Low BG (mg/dL)` &lt;lgl&gt;, `BWZ Carb Ratio (g/U)` &lt;dbl&gt;, …
+# ℹ Use `colnames()` to see all variable names</code></pre>
 </div>
 </div>
 <p>Okay, so, a <strong>Warning</strong>. What’s that about?</p>
@@ -462,27 +466,190 @@ $ `Preset Temp Basal Name`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
 </div>
 </div>
-<p>That’s a whole lotta <code>&lt;NA&gt;</code>s! Apart from that, it looks pretty decent already. Here’s what needs to be done still:</p>
-<ul>
-<li>throw out the variables we don’t need (spoiler: most of them)</li>
-<li>clean up the column names</li>
-<li><code>time</code> precision by minutes does absolutely suffice</li>
-<li>a combined <code>datetime</code> column would be nice</li>
-<li>a column of weekdays, too, just for some quality of life improvement</li>
-</ul>
-<p>It also totally makes sense to split pump from CGM data, of course. Since both are structurally identical, we’ll do that after the clean-up.</p>
+<p>That’s a whole lotta <code>&lt;NA&gt;</code>s! Apart from that, it looks pretty decent already.</p>
 </section>
 <section id="the-clean-up-procedure" class="level1">
 <h1>The Clean-up Procedure</h1>
-<p>There are basically three groups of variables:</p>
-<ol type="1">
-<li>those of our main interest, like glucose measurements, insulin dosages, carbohydrate intake, etc</li>
-<li>some that might be of minor interest, but rather when it comes to device usage and diagnostics than actual medical interest, like alarms, suspension and rewind times, etc</li>
-<li>not interesting or useful at all</li>
-</ol>
-<p>For now, we’ll focus on the first type only.</p>
+<p>Here’s what needs to be done still:</p>
+<ul>
+<li>clean up the column names</li>
+<li>throw out the variables we don’t need (spoiler: most of them)</li>
+<li><code>time</code> precision by minutes should suffice</li>
+<li>a combined <code>datetime</code> column would be nice</li>
+<li>a column of weekdays, too, just for some quality of life improvement</li>
+</ul>
+<p>It also totally makes sense to split pump from CGM data, of course. Since both are structurally identical, though, we’ll do that after the clean-up. At this point, we’re also only interested in variables that directly deal with glucose measurements, insulin dosage and carbohydrate intake<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<section id="codebook" class="level2">
+<h2 class="anchored" data-anchor-id="codebook">Codebook</h2>
+<p>The variables of interest are:</p>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Renamed to</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Index</code></td>
+<td><code>index</code></td>
+<td>kinda self-explanatory</td>
+</tr>
+<tr class="even">
+<td><code>Date</code></td>
+<td><code>date</code></td>
+<td>Year-Month-Day</td>
+</tr>
+<tr class="odd">
+<td><code>Time</code></td>
+<td><code>time</code></td>
+<td>hh:mm:ss</td>
+</tr>
+<tr class="even">
+<td><code>BG Reading (mg/dL)</code></td>
+<td><code>bg_direct</code></td>
+<td>a <strong>direct</strong> measurement of blood, usually by pricking a finger</td>
+</tr>
+<tr class="odd">
+<td><code>Sensor Glucose (mg/dL)</code></td>
+<td><code>bg_sensor</code></td>
+<td>an <em>indirect</em> measurement of interstitial fluid by the gcm sensor</td>
+</tr>
+<tr class="even">
+<td><code>Basal Rate (U/h)</code></td>
+<td><code>basal_rate</code></td>
+<td>the hourly rate of insulin given (in ‘Units’; roughly 100U/ml)</td>
+</tr>
+<tr class="odd">
+<td><code>BWZ BG Input (mg/dL)</code></td>
+<td><code>wiz_bg</code></td>
+<td>blood glucose level (manual input)</td>
+</tr>
+<tr class="even">
+<td><code>BWZ Carb Input (grams)</code></td>
+<td><code>wiz_carbs</code></td>
+<td>carbohydrates (manual input)</td>
+</tr>
+<tr class="odd">
+<td><code>BWZ Carb Ratio (g/U)</code></td>
+<td><code>wiz_ratio</code></td>
+<td>ratio of carbs per unit of insulin</td>
+</tr>
+<tr class="even">
+<td><code>BWZ Correction Estimate (U)</code></td>
+<td><code>wiz_est_correction</code></td>
+<td>insulin to deliver to correct for too high bg level</td>
+</tr>
+<tr class="odd">
+<td><code>BWZ Food Estimate (U)</code></td>
+<td><code>wiz_est_food</code></td>
+<td>insulin units to deliver for the amount of carbohydrates (carbs / ratio)</td>
+</tr>
+<tr class="even">
+<td><code>BWZ Unabsorbed Insulin Total (U)</code></td>
+<td><code>wiz_est_unabsorbed</code></td>
+<td>insulin to <em>not</em> deliver in order to not overcompensate</td>
+</tr>
+<tr class="odd">
+<td><code>Final Bolus Estimate</code></td>
+<td><code>bolus_final</code></td>
+<td>amount of insulin to deliver</td>
+</tr>
+<tr class="even">
+<td><code>Bolus Volume Delivered (U)</code></td>
+<td><code>bolus_delivered</code></td>
+<td>the actual amount of insulin delivered</td>
+</tr>
+</tbody>
+</table>
+<p>To clean up column names, we could of course use some convenient helper function like <code>clean_names()</code> from the <code>janitor</code> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(data_raw) <span class="sc">%&gt;%</span> <span class="fu">names</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "alarm"                               "basal_rate_u_h"                     
+ [3] "bg_reading_mg_d_l"                   "bg_source"                          
+ [5] "ble_network_device"                  "bolus_cancellation_reason"          
+ [7] "bolus_duration_h_mm_ss"              "bolus_number"                       
+ [9] "bolus_source"                        "bolus_type"                         
+[11] "bolus_volume_delivered_u"            "bolus_volume_selected_u"            
+[13] "bwz_active_insulin_u"                "bwz_bg_input_mg_d_l"                
+[15] "bwz_carb_input_grams"                "bwz_carb_ratio_g_u"                 
+[17] "bwz_correction_estimate_u"           "bwz_estimate_u"                     
+[19] "bwz_food_estimate_u"                 "bwz_insulin_sensitivity_mg_d_l_u"   
+[21] "bwz_status"                          "bwz_target_high_bg_mg_d_l"          
+[23] "bwz_target_low_bg_mg_d_l"            "bwz_unabsorbed_insulin_total_u"     
+[25] "date"                                "event_marker"                       
+[27] "final_bolus_estimate"                "index"                              
+[29] "insulin_action_curve_time"           "isig_value"                         
+[31] "linked_bg_meter_id"                  "network_device_associated_reason"   
+[33] "network_device_disassociated_reason" "network_device_disconnected_reason" 
+[35] "new_device_time"                     "preset_bolus"                       
+[37] "preset_temp_basal_name"              "prime_type"                         
+[39] "prime_volume_delivered_u"            "rewind"                             
+[41] "scroll_step_size"                    "sensor_calibration_bg_mg_d_l"       
+[43] "sensor_calibration_rejected_reason"  "sensor_exception"                   
+[45] "sensor_glucose_mg_d_l"               "suspend"                            
+[47] "temp_basal_amount"                   "temp_basal_duration_h_mm_ss"        
+[49] "temp_basal_type"                     "time"                               
+[51] "x51"                                </code></pre>
+</div>
+</div>
+<p>As you can see, that does indeed make them “workable”, but it’s still pretty convoluted and even confusing occasionally. Therefore, in a second step, we do some touch-ups manually and get rid of all the columns we’re not interested in. And since we’re already at it, why not tick off the rest of the items on our list, too?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="ot">&lt;-</span> data_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">index =</span> index,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">datetime =</span> <span class="fu">round_date</span>(<span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, time)), <span class="at">unit =</span> <span class="st">"minute"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">date  =</span> date,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wday  =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">time  =</span> time,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">basal_rate =</span> basal_rate_u_h,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_direct  =</span> bg_reading_mg_d_l,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_sensor  =</span> sensor_glucose_mg_d_l,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_ratio =</span> bwz_carb_ratio_g_u,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_carbs =</span> bwz_carb_input_grams,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_bg =</span> bwz_bg_input_mg_d_l,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_correction =</span> bwz_correction_estimate_u,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_food =</span> bwz_food_estimate_u,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_unabsorbed =</span> bwz_unabsorbed_insulin_total_u,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_final =</span> final_bolus_estimate, </span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_delivered =</span> bolus_volume_delivered_u</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: 2 failed to parse.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_full</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9,236 × 16
+   index datetime            date       wday  time     basal_r…¹ bg_di…² bg_se…³
+   &lt;dbl&gt; &lt;dttm&gt;              &lt;date&gt;     &lt;ord&gt; &lt;time&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1     0 2022-02-17 11:08:00 2022-02-17 Do    11:07:38     NA         NA      NA
+ 2     1 2022-02-17 11:03:00 2022-02-17 Do    11:02:39     NA         NA      NA
+ 3     2 2022-02-17 11:00:00 2022-02-17 Do    11:00:00      0.65      NA      NA
+ 4     3 2022-02-17 10:58:00 2022-02-17 Do    10:57:42     NA         NA      NA
+ 5     4 2022-02-17 10:53:00 2022-02-17 Do    10:52:42     NA         NA      NA
+ 6     5 2022-02-17 10:38:00 2022-02-17 Do    10:37:45     NA         NA      NA
+ 7     6 2022-02-17 10:33:00 2022-02-17 Do    10:32:49     NA         NA      NA
+ 8     7 2022-02-17 10:28:00 2022-02-17 Do    10:27:48     NA         NA      NA
+ 9     8 2022-02-17 10:28:00 2022-02-17 Do    10:27:46     NA         NA      NA
+10     9 2022-02-17 10:23:00 2022-02-17 Do    10:22:52     NA         NA      NA
+# … with 9,226 more rows, 8 more variables: wiz_ratio &lt;dbl&gt;, wiz_carbs &lt;dbl&gt;,
+#   wiz_bg &lt;dbl&gt;, wiz_est_correction &lt;dbl&gt;, wiz_est_food &lt;dbl&gt;,
+#   wiz_est_unabsorbed &lt;dbl&gt;, bolus_final &lt;dbl&gt;, bolus_delivered &lt;dbl&gt;, and
+#   abbreviated variable names ¹​basal_rate, ²​bg_direct, ³​bg_sensor
+# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 
 
@@ -490,6 +657,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 
 <ol>
 <li id="fn1"><p>mostly hard-coded things like ratios or target values that change slightly during a day but stay the same across all days<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>other variables contain aforementioned “hard codings” or diagnostics on device usage such as low battery warnings<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

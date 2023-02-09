@@ -6,3 +6,11 @@
   padding: 14px 12px 1px 20px;
   margin: 12px;
 }
+
+.quarto-title-banner {
+  background-color: #222222;
+}
+
+.subtitle {
+  color: #DEE2E6;
+}

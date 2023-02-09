@@ -25,5 +25,11 @@
   },
   "projects.qmd": {
     "projects.html": "6b8fdefb"
+  },
+  "sugr-shiny.qmd": {
+    "sugr-shiny.html": "335e8ac2"
+  },
+  "projects/sugr-shiny.qmd": {
+    "sugr-shiny.html": "be7833c8"
   }
 }

@@ -1,0 +1,14 @@
+{
+  "hash": "82f0721278199e16469103f7cafda30f",
+  "result": {
+    "markdown": "---\ntitle: \"sugr: make it shiny\"\nsubtitle: \"A shiny app to conveniently browse blood glucose history\"\nauthor: \"Tobias\"\ndate: \"09. Feb, 2023\"\n---\n\n\n# Nothing yet\n\nJust some placeholder document for now.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
