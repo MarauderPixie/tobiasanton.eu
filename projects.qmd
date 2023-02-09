@@ -1,9 +1,12 @@
 ---
 title: "Projects"
+page-layout: article
 listing: 
-  contents: projects 
-  type: default 
-  sort: "date desc" 
-  categories: false 
   fields: [image, date, title, author, subtitle]
+  image-placeholder: "projects/thumbs/fnord.png"
+  image-align: left
+  categories: false
+  contents: projects
+  sort: "date desc"  
+  type: default 
 ---

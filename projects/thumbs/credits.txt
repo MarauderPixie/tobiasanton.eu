@@ -1,0 +1,5 @@
+File     | URL | License
+---------|-----------------------------------------------------------|--------------
+dice-1   | https://www.flickr.com/photos/eclesh/163510183 | CC-BY 2.0
+dice-2   | https://www.flickr.com/photos/sk8geek/5649029922/ | CC-BY-SA 2.0
+diabetic | https://www.flickr.com/photos/marcinkrawczyk/40728698405/ | n.a.
