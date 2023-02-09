@@ -3,6 +3,7 @@ title: "Skill Check Comparison"
 subtitle: "Some dice roll simulations to compare skill check mechanics from various TTRPGs"
 author: "Tobias"
 date: "06. Feb, 2023"
+image: "thumbs/dice-2.jpg"
 ---
 
 ```{r init, include=FALSE}
@@ -41,9 +42,9 @@ roll_d6 <- function(n_dice, n_rolls, system = "sum") {
 }
 ```
 
-## tl;dr
-
-I wrote this once already, then the IDE just... quit. Now I'm not inclined to repeat myself anytime soon. \>=(
+::: tldr
+**tl;dr:** I wrote this once already, then the IDE just... quit. Now I'm not inclined to repeat myself anytime soon. \>=(
+:::
 
 # Checks from different Systems
 

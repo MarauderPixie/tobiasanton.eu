@@ -1,6 +1,7 @@
 ---
-title: "sugr"
+title: "sugr: data preparation"
 subtitle: "Preparation of Continouos Glucose Measurements for usage in a shiny app"
+image: "thumbs/diabetic.jpg"
 author: "Tobias"
 date: "`r format(Sys.time(), '%d. %b, %Y')`"
 ---
@@ -12,6 +13,7 @@ date: "`r format(Sys.time(), '%d. %b, %Y')`"
 ```{r init}
 #| include: false
 library(tidyverse)
+library(lubridate)
 ```
 
 # Abstract
@@ -54,22 +56,70 @@ Alright, the first ~70ish are actual parsing errors that lead to empty cells. No
 glimpse(data_raw)
 ```
 
-That's a whole lotta `<NA>`s! Apart from that, it looks pretty decent already. Here's what needs to be done still:
-
-- throw out the variables we don't need (spoiler: most of them)
-- clean up the column names
-- `time` precision by minutes does absolutely suffice
-- a combined `datetime` column would be nice
-- a column of weekdays, too, just for some quality of life improvement
-
-It also totally makes sense to split pump from CGM data, of course. Since both are structurally identical, we'll do that after the clean-up.
+That's a whole lotta `<NA>`s! Apart from that, it looks pretty decent already. 
 
 # The Clean-up Procedure
 
-There are basically three groups of variables:
+Here's what needs to be done still:
 
-1. those of our main interest, like glucose measurements, insulin dosages, carbohydrate intake, etc
-2. some that might be of minor interest, but rather when it comes to device usage and diagnostics than actual medical interest, like alarms, suspension and rewind times, etc
-3. not interesting or useful at all
+- clean up the column names
+- throw out the variables we don't need (spoiler: most of them)
+- `time` precision by minutes should suffice
+- a combined `datetime` column would be nice
+- a column of weekdays, too, just for some quality of life improvement
 
-For now, we'll focus on the first type only.
+It also totally makes sense to split pump from CGM data, of course. Since both are structurally identical, though, we'll do that after the clean-up. At this point, we're also only interested in variables that directly deal with glucose measurements, insulin dosage and carbohydrate intake^[other variables contain aforementioned "hard codings" or diagnostics on device usage such as low battery warnings]. 
+
+## Codebook
+
+The variables of interest are:
+
+Variable | Renamed to | Description
+---------|------------|------------------------------------------------
+`Index`  | `index`    | kinda self-explanatory
+`Date`   | `date`     | Year-Month-Day
+`Time`   | `time`     | hh:mm:ss
+`BG Reading (mg/dL)`          | `bg_direct` | a **direct** measurement of blood, usually by pricking a finger
+`Sensor Glucose (mg/dL)`      | `bg_sensor` | an _indirect_ measurement of interstitial fluid by the gcm sensor
+`Basal Rate (U/h)`            | `basal_rate` | the hourly rate of insulin given (in 'Units'; roughly 100U/ml)
+`BWZ BG Input (mg/dL)`        | `wiz_bg`    | blood glucose level (manual input)
+`BWZ Carb Input (grams)`      | `wiz_carbs` | carbohydrates (manual input)
+`BWZ Carb Ratio (g/U)`        | `wiz_ratio` | ratio of carbs per unit of insulin
+`BWZ Correction Estimate (U)` | `wiz_est_correction` | insulin to deliver to correct for too high bg level
+`BWZ Food Estimate (U)`       | `wiz_est_food`    | insulin units to deliver for the amount of carbohydrates (carbs / ratio)
+`BWZ Unabsorbed Insulin Total (U)` | `wiz_est_unabsorbed` | insulin to _not_ deliver in order to not overcompensate
+`Final Bolus Estimate`        | `bolus_final`     | amount of insulin to deliver
+`Bolus Volume Delivered (U)`  | `bolus_delivered` | the actual amount of insulin delivered
+
+
+To clean up column names, we could of course use some convenient helper function like `clean_names()` from the `janitor` package:
+
+```{r b2_janitor}
+janitor::clean_names(data_raw) %>% names() %>% sort()
+```
+As you can see, that does indeed make them "workable", but it's still pretty convoluted and even confusing occasionally. Therefore, in a second step, we do some touch-ups manually and get rid of all the columns we're not interested in. And since we're already at it, why not tick off the rest of the items on our list, too?
+
+```{r b2_transmute}
+data_full <- data_raw %>% 
+  janitor::clean_names() %>% 
+  transmute(
+    index = index,
+    datetime = round_date(ymd_hms(paste(date, time)), unit = "minute"),
+    date  = date,
+    wday  = wday(date, label = TRUE, week_start = 1),
+    time  = time,
+    basal_rate = basal_rate_u_h,
+    bg_direct  = bg_reading_mg_d_l,
+    bg_sensor  = sensor_glucose_mg_d_l,
+    wiz_ratio = bwz_carb_ratio_g_u,
+    wiz_carbs = bwz_carb_input_grams,
+    wiz_bg = bwz_bg_input_mg_d_l,
+    wiz_est_correction = bwz_correction_estimate_u,
+    wiz_est_food = bwz_food_estimate_u,
+    wiz_est_unabsorbed = bwz_unabsorbed_insulin_total_u,
+    bolus_final = final_bolus_estimate, 
+    bolus_delivered = bolus_volume_delivered_u
+  )
+
+data_full
+```
