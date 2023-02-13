@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tobias">
-<meta name="dcterms.date" content="2023-02-10">
+<meta name="dcterms.date" content="2023-02-08">
 
 <title>Tobias Anton - sugr: data preparation</title>
 <style>
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 10, 2023</p>
+        <p class="date">February 8, 2023</p>
       </div>
     </div>
     
@@ -221,7 +221,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#the-clean-up-procedure" id="toc-the-clean-up-procedure" class="nav-link" data-scroll-target="#the-clean-up-procedure">The Clean-up Procedure</a>
   <ul class="collapse">
   <li><a href="#codebook" id="toc-codebook" class="nav-link" data-scroll-target="#codebook">Codebook</a></li>
+  <li><a href="#cleaning-and-variable-selection" id="toc-cleaning-and-variable-selection" class="nav-link" data-scroll-target="#cleaning-and-variable-selection">Cleaning and Variable Selection</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-Up</a></li>
   </ul></li>
+  <li><a href="#splitting-cgm-pump-data" id="toc-splitting-cgm-pump-data" class="nav-link" data-scroll-target="#splitting-cgm-pump-data">Splitting CGM &amp; Pump Data</a></li>
   </ul>
 </nav>
     </div>
@@ -248,6 +252,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="reading-the-raw-data" class="level1">
 <h1>Reading the Raw Data</h1>
 <p>First let’s have a look at what we’ve got here. To save ourselves some headaches, I already put all the settings in all the places such that we get a nice tabular dataset. Most should be pretty self-explanatory: entries are delimited by a semicolon, the date format has to be sepcified and so on. I set <code>skip = 6</code> because, well, that’s where the actual csv entries actually begin. Beforehand it’s just some unstructured data about the device, patient, date of recordng, etc.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Glimpse</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Warning</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data_raw <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/sugr/carelink-export-220217.csv"</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, </span>
@@ -265,28 +273,69 @@ e.g.:
   dat &lt;- vroom(...)
   problems(dat)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 51
-  Index Date       Time     New Device…¹ BG So…² BG Re…³ Linke…⁴ Basal…⁵ Temp …⁶
-  &lt;dbl&gt; &lt;date&gt;     &lt;time&gt;   &lt;lgl&gt;        &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;lgl&gt;  
-1     0 2022-02-17 11:07:38 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
-2     1 2022-02-17 11:02:39 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
-3     2 2022-02-17 11:00:00 NA           &lt;NA&gt;         NA &lt;NA&gt;       0.65 NA     
-4     3 2022-02-17 10:57:42 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
-5     4 2022-02-17 10:52:42 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
-6     5 2022-02-17 10:37:45 NA           &lt;NA&gt;         NA &lt;NA&gt;      NA    NA     
-# … with 42 more variables: `Temp Basal Type` &lt;lgl&gt;,
-#   `Temp Basal Duration (h:mm:ss)` &lt;lgl&gt;, `Bolus Type` &lt;chr&gt;,
-#   `Bolus Volume Selected (U)` &lt;dbl&gt;, `Bolus Volume Delivered (U)` &lt;dbl&gt;,
-#   `Bolus Duration (h:mm:ss)` &lt;lgl&gt;, `Prime Type` &lt;chr&gt;,
-#   `Prime Volume Delivered (U)` &lt;dbl&gt;, Alarm &lt;chr&gt;, Suspend &lt;chr&gt;,
-#   Rewind &lt;lgl&gt;, `BWZ Estimate (U)` &lt;dbl&gt;, `BWZ Target High BG (mg/dL)` &lt;lgl&gt;,
-#   `BWZ Target Low BG (mg/dL)` &lt;lgl&gt;, `BWZ Carb Ratio (g/U)` &lt;dbl&gt;, …
-# ℹ Use `colnames()` to see all variable names</code></pre>
+<pre><code>Rows: 9,236
+Columns: 51
+$ Index                                 &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
+$ Date                                  &lt;date&gt; 2022-02-17, 2022-02-17, 2022-02…
+$ Time                                  &lt;time&gt; 11:07:38, 11:02:39, 11:00:00, 1…
+$ `New Device Time`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BG Source`                           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BG Reading (mg/dL)`                  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Linked BG Meter ID`                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Basal Rate (U/h)`                    &lt;dbl&gt; NA, NA, 0.65, NA, NA, NA, NA, NA…
+$ `Temp Basal Amount`                   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Temp Basal Type`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Temp Basal Duration (h:mm:ss)`       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Type`                          &lt;chr&gt; "Normal", "Normal", NA, "Normal"…
+$ `Bolus Volume Selected (U)`           &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
+$ `Bolus Volume Delivered (U)`          &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
+$ `Bolus Duration (h:mm:ss)`            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Prime Type`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Prime Volume Delivered (U)`          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Alarm                                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Suspend                               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Rewind                                &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Estimate (U)`                    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Target High BG (mg/dL)`          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Target Low BG (mg/dL)`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Carb Ratio (g/U)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Insulin Sensitivity (mg/dL/U)`   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Carb Input (grams)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ BG Input (mg/dL)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Correction Estimate (U)`         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Food Estimate (U)`               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Active Insulin (U)`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Status`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Calibration BG (mg/dL)`       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Glucose (mg/dL)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `ISIG Value`                          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Event Marker`                        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Number`                        &lt;dbl&gt; 236, 235, NA, 234, 233, 232, 231…
+$ `Bolus Cancellation Reason`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `BWZ Unabsorbed Insulin Total (U)`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Final Bolus Estimate`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Scroll Step Size`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Insulin Action Curve Time`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Calibration Rejected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Preset Bolus`                        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Bolus Source`                        &lt;chr&gt; "CLOSED_LOOP_MICRO_BOLUS", "CLOS…
+$ `BLE Network Device`                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Associated Reason`    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Disassociated Reason` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Network Device Disconnected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Sensor Exception`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ `Preset Temp Basal Name`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
+$ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
 </div>
 </div>
-<p>Okay, so, a <strong>Warning</strong>. What’s that about?</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(data_raw) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>file) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">120</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -407,66 +456,12 @@ e.g.:
 112  4339    50 1/0/T/F/TRUE/FALSE Preset Temp Basal Name             </code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
+<p>Okay, so, a <strong>Warning</strong>. What’s that about?</p>
 <p>Alright, the first ~70ish are actual parsing errors that lead to empty cells. Not great, but also no entries of huge importance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, as far as I can tell. The rest though result from the circumstance that the file is basically seperated in CGM sensor data and insulin pump data, as mentioned in the beginning. Luckily though, <code>readr</code>/<code>vroom</code> just ignores the two rows where the new table begins - a device description and exactly same column names in the same order as before - and just continues parsing the CGM data. Let’s take a look at those whopping 51 Variables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 9,236
-Columns: 51
-$ Index                                 &lt;dbl&gt; 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10…
-$ Date                                  &lt;date&gt; 2022-02-17, 2022-02-17, 2022-02…
-$ Time                                  &lt;time&gt; 11:07:38, 11:02:39, 11:00:00, 1…
-$ `New Device Time`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BG Source`                           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BG Reading (mg/dL)`                  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Linked BG Meter ID`                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Basal Rate (U/h)`                    &lt;dbl&gt; NA, NA, 0.65, NA, NA, NA, NA, NA…
-$ `Temp Basal Amount`                   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Temp Basal Type`                     &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Temp Basal Duration (h:mm:ss)`       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Bolus Type`                          &lt;chr&gt; "Normal", "Normal", NA, "Normal"…
-$ `Bolus Volume Selected (U)`           &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
-$ `Bolus Volume Delivered (U)`          &lt;dbl&gt; 0.03, 0.05, NA, 0.05, 0.03, 0.03…
-$ `Bolus Duration (h:mm:ss)`            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Prime Type`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Prime Volume Delivered (U)`          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ Alarm                                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ Suspend                               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ Rewind                                &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Estimate (U)`                    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Target High BG (mg/dL)`          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Target Low BG (mg/dL)`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Carb Ratio (g/U)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Insulin Sensitivity (mg/dL/U)`   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Carb Input (grams)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ BG Input (mg/dL)`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Correction Estimate (U)`         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Food Estimate (U)`               &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Active Insulin (U)`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Status`                          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Sensor Calibration BG (mg/dL)`       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Sensor Glucose (mg/dL)`              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `ISIG Value`                          &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Event Marker`                        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Bolus Number`                        &lt;dbl&gt; 236, 235, NA, 234, 233, 232, 231…
-$ `Bolus Cancellation Reason`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `BWZ Unabsorbed Insulin Total (U)`    &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Final Bolus Estimate`                &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Scroll Step Size`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Insulin Action Curve Time`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Sensor Calibration Rejected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Preset Bolus`                        &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Bolus Source`                        &lt;chr&gt; "CLOSED_LOOP_MICRO_BOLUS", "CLOS…
-$ `BLE Network Device`                  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Network Device Associated Reason`    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Network Device Disassociated Reason` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Network Device Disconnected Reason`  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Sensor Exception`                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ `Preset Temp Basal Name`              &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …
-$ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, …</code></pre>
-</div>
-</div>
-<p>That’s a whole lotta <code>&lt;NA&gt;</code>s! Apart from that, it looks pretty decent already.</p>
+<p>Looks pretty decent already. That’s a whole lotta <code>&lt;NA&gt;</code>s, though. We’ll have to look into that in another article.</p>
 </section>
 <section id="the-clean-up-procedure" class="level1">
 <h1>The Clean-up Procedure</h1>
@@ -482,6 +477,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 <section id="codebook" class="level2">
 <h2 class="anchored" data-anchor-id="codebook">Codebook</h2>
 <p>The variables of interest are:</p>
+<div class="fullwidth">
 <table class="table">
 <colgroup>
 <col style="width: 13%">
@@ -568,9 +564,13 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 </tr>
 </tbody>
 </table>
+</div>
+</section>
+<section id="cleaning-and-variable-selection" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-and-variable-selection">Cleaning and Variable Selection</h2>
 <p>To clean up column names, we could of course use some convenient helper function like <code>clean_names()</code> from the <code>janitor</code> package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(data_raw) <span class="sc">%&gt;%</span> <span class="fu">names</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>janitor<span class="sc">::</span><span class="fu">clean_names</span>(data_raw) <span class="sc">%&gt;%</span> <span class="fu">names</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "alarm"                               "basal_rate_u_h"                     
  [3] "bg_reading_mg_d_l"                   "bg_source"                          
@@ -600,56 +600,159 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 [51] "x51"                                </code></pre>
 </div>
 </div>
-<p>As you can see, that does indeed make them “workable”, but it’s still pretty convoluted and even confusing occasionally. Therefore, in a second step, we do some touch-ups manually and get rid of all the columns we’re not interested in. And since we’re already at it, why not tick off the rest of the items on our list, too?</p>
+<p>As you can see, that does indeed make them “workable”, but it’s still pretty convoluted and even occasionally confusing. Therefore, in a second step, we do some touch-ups manually and get rid of all the columns we’re not interested in. And since we’re already at it, why not tick off the rest of the items on our list, too?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="ot">&lt;-</span> data_raw <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">index =</span> index,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">datetime =</span> <span class="fu">round_date</span>(<span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, time)), <span class="at">unit =</span> <span class="st">"minute"</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">date  =</span> date,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wday  =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>),</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">time  =</span> time,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">basal_rate =</span> basal_rate_u_h,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_direct  =</span> bg_reading_mg_d_l,</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_sensor  =</span> sensor_glucose_mg_d_l,</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_ratio =</span> bwz_carb_ratio_g_u,</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_carbs =</span> bwz_carb_input_grams,</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_bg =</span> bwz_bg_input_mg_d_l,</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_correction =</span> bwz_correction_estimate_u,</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_food =</span> bwz_food_estimate_u,</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_unabsorbed =</span> bwz_unabsorbed_insulin_total_u,</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_final =</span> final_bolus_estimate, </span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_delivered =</span> bolus_volume_delivered_u</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="ot">&lt;-</span> data_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">index =</span> index,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">datetime =</span> <span class="fu">round_date</span>(<span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, time)), <span class="at">unit =</span> <span class="st">"minute"</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">date  =</span> date,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">wday  =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">time  =</span> time,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">basal_rate =</span> basal_rate_u_h,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_direct  =</span> bg_reading_mg_d_l,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_sensor  =</span> sensor_glucose_mg_d_l,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_ratio =</span> bwz_carb_ratio_g_u,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_carbs =</span> bwz_carb_input_grams,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_bg =</span> bwz_bg_input_mg_d_l,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_correction =</span> bwz_correction_estimate_u,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_food =</span> bwz_food_estimate_u,</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_unabsorbed =</span> bwz_unabsorbed_insulin_total_u,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_final =</span> final_bolus_estimate, </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_delivered =</span> bolus_volume_delivered_u</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: 2 failed to parse.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_full</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9,236 × 16
-   index datetime            date       wday  time     basal_r…¹ bg_di…² bg_se…³
-   &lt;dbl&gt; &lt;dttm&gt;              &lt;date&gt;     &lt;ord&gt; &lt;time&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1     0 2022-02-17 11:08:00 2022-02-17 Do    11:07:38     NA         NA      NA
- 2     1 2022-02-17 11:03:00 2022-02-17 Do    11:02:39     NA         NA      NA
- 3     2 2022-02-17 11:00:00 2022-02-17 Do    11:00:00      0.65      NA      NA
- 4     3 2022-02-17 10:58:00 2022-02-17 Do    10:57:42     NA         NA      NA
- 5     4 2022-02-17 10:53:00 2022-02-17 Do    10:52:42     NA         NA      NA
- 6     5 2022-02-17 10:38:00 2022-02-17 Do    10:37:45     NA         NA      NA
- 7     6 2022-02-17 10:33:00 2022-02-17 Do    10:32:49     NA         NA      NA
- 8     7 2022-02-17 10:28:00 2022-02-17 Do    10:27:48     NA         NA      NA
- 9     8 2022-02-17 10:28:00 2022-02-17 Do    10:27:46     NA         NA      NA
-10     9 2022-02-17 10:23:00 2022-02-17 Do    10:22:52     NA         NA      NA
-# … with 9,226 more rows, 8 more variables: wiz_ratio &lt;dbl&gt;, wiz_carbs &lt;dbl&gt;,
-#   wiz_bg &lt;dbl&gt;, wiz_est_correction &lt;dbl&gt;, wiz_est_food &lt;dbl&gt;,
-#   wiz_est_unabsorbed &lt;dbl&gt;, bolus_final &lt;dbl&gt;, bolus_delivered &lt;dbl&gt;, and
-#   abbreviated variable names ¹​basal_rate, ²​bg_direct, ³​bg_sensor
-# ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</code></pre>
 </div>
-</div>
-
-
 </section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>Another <strong>Warning</strong>, this time a parsing failure? Most certainly either when calling for the weekday labels or concoctenating and rounding the datetime:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(data_full<span class="sc">$</span>wday)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(wday)) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2
+Columns: 16
+$ index              &lt;dbl&gt; NA, NA
+$ datetime           &lt;dttm&gt; NA, NA
+$ date               &lt;date&gt; NA, NA
+$ wday               &lt;ord&gt; NA, NA
+$ time               &lt;time&gt; NA, NA
+$ basal_rate         &lt;dbl&gt; NA, NA
+$ bg_direct          &lt;dbl&gt; NA, NA
+$ bg_sensor          &lt;dbl&gt; NA, NA
+$ wiz_ratio          &lt;dbl&gt; NA, NA
+$ wiz_carbs          &lt;dbl&gt; NA, NA
+$ wiz_bg             &lt;dbl&gt; NA, NA
+$ wiz_est_correction &lt;dbl&gt; NA, NA
+$ wiz_est_food       &lt;dbl&gt; NA, NA
+$ wiz_est_unabsorbed &lt;dbl&gt; NA, NA
+$ bolus_final        &lt;dbl&gt; NA, NA
+$ bolus_delivered    &lt;dbl&gt; NA, NA</code></pre>
+</div>
+</div>
+<p>Two completely empty rows alright. Since even the <code>index</code> column is empty, it’s probably just an artefact of the two datasets in one file issue. We better check that out, too, though.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Find Suspects</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Glimpse</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anyNA</span>(data_raw<span class="sc">$</span>Index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">is.na</span>(data_raw<span class="sc">$</span>Index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4337 4338</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_raw[<span class="dv">4336</span><span class="sc">:</span><span class="dv">4339</span>, ] <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4
+Columns: 51
+$ Index                                 &lt;dbl&gt; 4335, NA, NA, 4336
+$ Date                                  &lt;date&gt; 2022-01-30, NA, NA, 2022-02-17
+$ Time                                  &lt;time&gt; 23:50:04,       NA,       NA, 11…
+$ `New Device Time`                     &lt;lgl&gt; NA, NA, NA, NA
+$ `BG Source`                           &lt;chr&gt; NA, "-------", "BG Source", NA
+$ `BG Reading (mg/dL)`                  &lt;dbl&gt; NA, NA, NA, NA
+$ `Linked BG Meter ID`                  &lt;chr&gt; NA, NA, "Linked BG Meter ID", NA
+$ `Basal Rate (U/h)`                    &lt;dbl&gt; NA, NA, NA, NA
+$ `Temp Basal Amount`                   &lt;lgl&gt; NA, NA, NA, NA
+$ `Temp Basal Type`                     &lt;lgl&gt; NA, NA, NA, NA
+$ `Temp Basal Duration (h:mm:ss)`       &lt;lgl&gt; NA, NA, NA, NA
+$ `Bolus Type`                          &lt;chr&gt; NA, NA, "Bolus Type", NA
+$ `Bolus Volume Selected (U)`           &lt;dbl&gt; NA, NA, NA, NA
+$ `Bolus Volume Delivered (U)`          &lt;dbl&gt; NA, NA, NA, NA
+$ `Bolus Duration (h:mm:ss)`            &lt;lgl&gt; NA, NA, NA, NA
+$ `Prime Type`                          &lt;chr&gt; NA, NA, "Prime Type", NA
+$ `Prime Volume Delivered (U)`          &lt;dbl&gt; NA, NA, NA, NA
+$ Alarm                                 &lt;chr&gt; NA, NA, "Alarm", NA
+$ Suspend                               &lt;chr&gt; NA, NA, "Suspend", NA
+$ Rewind                                &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Estimate (U)`                    &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ Target High BG (mg/dL)`          &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Target Low BG (mg/dL)`           &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Carb Ratio (g/U)`                &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ Insulin Sensitivity (mg/dL/U)`   &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Carb Input (grams)`              &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ BG Input (mg/dL)`                &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ Correction Estimate (U)`         &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ Food Estimate (U)`               &lt;dbl&gt; NA, NA, NA, NA
+$ `BWZ Active Insulin (U)`              &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Status`                          &lt;chr&gt; NA, NA, "BWZ Status", NA
+$ `Sensor Calibration BG (mg/dL)`       &lt;dbl&gt; NA, NA, NA, NA
+$ `Sensor Glucose (mg/dL)`              &lt;dbl&gt; NA, NA, NA, 122
+$ `ISIG Value`                          &lt;dbl&gt; NA, NA, NA, 23.9
+$ `Event Marker`                        &lt;chr&gt; NA, NA, "Event Marker", NA
+$ `Bolus Number`                        &lt;dbl&gt; NA, NA, NA, NA
+$ `Bolus Cancellation Reason`           &lt;lgl&gt; NA, NA, NA, NA
+$ `BWZ Unabsorbed Insulin Total (U)`    &lt;dbl&gt; NA, NA, NA, NA
+$ `Final Bolus Estimate`                &lt;dbl&gt; NA, NA, NA, NA
+$ `Scroll Step Size`                    &lt;chr&gt; NA, NA, "Scroll Step Size", NA
+$ `Insulin Action Curve Time`           &lt;lgl&gt; NA, NA, NA, NA
+$ `Sensor Calibration Rejected Reason`  &lt;lgl&gt; NA, NA, NA, NA
+$ `Preset Bolus`                        &lt;lgl&gt; NA, NA, NA, NA
+$ `Bolus Source`                        &lt;chr&gt; NA, NA, "Bolus Source", NA
+$ `BLE Network Device`                  &lt;lgl&gt; NA, NA, NA, NA
+$ `Network Device Associated Reason`    &lt;lgl&gt; NA, NA, NA, NA
+$ `Network Device Disassociated Reason` &lt;lgl&gt; NA, NA, NA, NA
+$ `Network Device Disconnected Reason`  &lt;lgl&gt; NA, NA, NA, NA
+$ `Sensor Exception`                    &lt;chr&gt; NA, NA, "Sensor Exception", NA
+$ `Preset Temp Basal Name`              &lt;lgl&gt; NA, NA, NA, NA
+$ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>That confirms it. Actually, we should throw those lines out right at the beginning of the process.</p>
+</section>
+<section id="wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
+<p>Doing it all in one go might then look like this:</p>
+<div class="cell">
+
+</div>
+</section>
+</section>
+<section id="splitting-cgm-pump-data" class="level1">
+<h1>Splitting CGM &amp; Pump Data</h1>
+<p>Now that the whole thing is cleaned up the only thing left to do is splitting pump and sensor data into seperate dataframes. We could of course leave it as is, but a split brings some advantages. At the initial reading of the data we already noticed the - professiponally speakng - sheer insane amount of <code>NA</code>s, which we can drastically reduce by the split. Additionally, the (semi-manual) pump data is not in sync with the cgm; while the latter happens very much exactly every 5 minutes<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, the former just happens whenever.</p>
+
+
 </section>
 
 
@@ -658,6 +761,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 <ol>
 <li id="fn1"><p>mostly hard-coded things like ratios or target values that change slightly during a day but stay the same across all days<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>other variables contain aforementioned “hard codings” or diagnostics on device usage such as low battery warnings<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>with an unspecific shift happening once a week whenever the sensor has to be replaced<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

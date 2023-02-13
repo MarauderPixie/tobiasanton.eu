@@ -3,6 +3,7 @@ title: "sugr: make it shiny"
 subtitle: "A shiny app to conveniently browse blood glucose history"
 author: "Tobias"
 date: "`r format(Sys.time(), '%d. %b, %Y')`"
+draft: true
 ---
 
 # Nothing yet

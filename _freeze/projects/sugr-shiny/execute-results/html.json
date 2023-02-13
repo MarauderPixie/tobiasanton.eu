@@ -1,8 +1,10 @@
 {
-  "hash": "82f0721278199e16469103f7cafda30f",
+  "hash": "a058ef897dccc8f4a3996b8e1b917932",
   "result": {
-    "markdown": "---\ntitle: \"sugr: make it shiny\"\nsubtitle: \"A shiny app to conveniently browse blood glucose history\"\nauthor: \"Tobias\"\ndate: \"09. Feb, 2023\"\n---\n\n\n# Nothing yet\n\nJust some placeholder document for now.",
-    "supporting": [],
+    "markdown": "---\ntitle: \"sugr: make it shiny\"\nsubtitle: \"A shiny app to conveniently browse blood glucose history\"\nauthor: \"Tobias\"\ndate: \"11. Feb, 2023\"\ndraft: true\n---\n\n\n# Nothing yet\n\nJust some placeholder document for now.",
+    "supporting": [
+      "sugr-shiny_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

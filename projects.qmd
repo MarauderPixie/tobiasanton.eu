@@ -1,10 +1,10 @@
 ---
 title: "Projects"
-page-layout: article
+page-layout: full
 listing: 
-  fields: [image, date, title, author, subtitle]
+  fields: [date, author, title, subtitle, image]
   image-placeholder: "projects/thumbs/fnord.png"
-  image-align: left
+  image-align: right
   categories: false
   contents: projects
   sort: "date desc"  
