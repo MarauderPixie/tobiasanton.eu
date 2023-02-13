@@ -2,7 +2,7 @@
 title: "Projects"
 page-layout: full
 listing: 
-  fields: [date, author, title, subtitle, image]
+  fields: [date, author, title, categories, subtitle, image]
   image-placeholder: "projects/thumbs/fnord.png"
   image-align: right
   categories: false

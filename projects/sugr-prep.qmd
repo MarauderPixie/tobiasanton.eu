@@ -1,6 +1,7 @@
 ---
 title: "sugr: data preparation"
 subtitle: "Preparation of Continouos Glucose Measurements for usage in a shiny app"
+categories: [data cleaning, timeseries]
 image: "thumbs/diabetic.jpg"
 author: "Tobias"
 date: "08. Feb, 2023"
@@ -14,6 +15,11 @@ date: "08. Feb, 2023"
 #| include: false
 library(tidyverse)
 library(lubridate)
+
+theme_set(
+  hrbrthemes::theme_modern_rc(plot_margin = margin(12, 10, 12, 10)) +
+    theme(strip.text = element_text(color = "#e0e0e0"))
+  )
 ```
 
 # Abstract
@@ -147,7 +153,7 @@ data_full %>%
   glimpse()
 ```
 
-Two completely empty rows alright. Since even the `index` column is empty, it's probably just an artefact of the two datasets in one file issue. We better check that out, too, though.
+Two completely empty rows alright. Since even the `index` column is empty, it's probably just an artefact of the "two datasets in one file issue". We better check that out, too, though.
 
 ::: {.panel-tabset}
 
@@ -176,7 +182,6 @@ That confirms it. Actually, we should throw those lines out right at the beginni
 Doing it all in one go might then look like this:
 
 ```{r b3_wrapup}
-#| echo: false
 #| warning: false
 data_full <- read_delim("data/sugr/carelink-export-220217.csv", 
                   delim = ";", escape_double = FALSE, 
@@ -210,4 +215,44 @@ data_full <- read_delim("data/sugr/carelink-export-220217.csv",
 
 # Splitting CGM & Pump Data
 
-Now that the whole thing is cleaned up the only thing left to do is splitting pump and sensor data into seperate dataframes. We could of course leave it as is, but a split brings some advantages. At the initial reading of the data we already noticed the - professiponally speakng - sheer insane amount of `NA`s, which we can drastically reduce by the split. Additionally, the (semi-manual) pump data is not in sync with the cgm; while the latter happens very much exactly every 5 minutes^[with an unspecific shift happening once a week whenever the sensor has to be replaced], the former just happens whenever. 
+Now that the whole thing is cleaned up the only thing left to do is splitting pump and sensor data into seperate dataframes. We could of course leave it as is, but a split brings some advantages. The CGM is not in sync with the (semi-manual) pump data; while the former happens very much exactly every 5 minutes^[with an unspecific shift happening once a week whenever the sensor has to be replaced], the latter just happens whenever. Additionally, at the initial reading of the data we already noticed the - professionally speaking - sheer insane amount of `NA`s, which we can drastically reduced by the split. When we color every cell of the data by whether it contains a value or not, it looks like this:
+
+```{r b3_viz_na}
+#| code-fold: true
+#| column: body
+#| fig-width: 10
+#| fig-height: 8
+data_full %>% 
+    map_df(is.na) %>% 
+    map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(alpha = .8) +
+    scale_fill_manual(values = c("#ff3300","#00cc00")) +
+    theme(legend.position = "top",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+```
+
+That's a lot of unused tabular real estate, what a waste... We can clearly see where pump data ends and CGM data begins, though. The 'green block' on the left hand side naturally consists of the timedate and indexing columns. We can also see that there are still otherwise empty rows in the lower part (the CGM data). There are two approaches by which to split the thing: (1) simply `filter` the `bg_sensor` column by checking for `NA` values and conveniently drop the empty CGM rows, too, or (2) use the previously identified index-row, such that those empty rows are kept and can be used to further investigate whats going on there^[Actually, a third possibility is the extraction of only those empty rows within the CGM block, but losing the context in which they appear is not very practical.]. For the sake of thoroughness, let's go with Option 2, have a look at what's going on there and possibly remove those empty rows later.
+
+```{r b3_split}
+cutoff_idx <- data_full$index[min(which(!is.na(data_full$bg_sensor)))]
+
+cgm <- data_full %>% 
+  filter(index > cutoff_idx) %>% 
+  select(index, datetime, date, wday, time, bg_sensor)
+
+pump <- data_full %>% 
+  filter(index <= cutoff_idx) %>% 
+  select(-bg_sensor)
+```

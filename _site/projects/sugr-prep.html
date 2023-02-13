@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -184,7 +184,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div class="quarto-title column-body">
       <h1 class="title">sugr: data preparation</h1>
             <p class="subtitle lead">Preparation of Continouos Glucose Measurements for usage in a shiny app</p>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">data cleaning</div>
+                <div class="quarto-category">timeseries</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -230,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
@@ -659,7 +663,7 @@ $ bolus_final        &lt;dbl&gt; NA, NA
 $ bolus_delivered    &lt;dbl&gt; NA, NA</code></pre>
 </div>
 </div>
-<p>Two completely empty rows alright. Since even the <code>index</code> column is empty, it’s probably just an artefact of the two datasets in one file issue. We better check that out, too, though.</p>
+<p>Two completely empty rows alright. Since even the <code>index</code> column is empty, it’s probably just an artefact of the “two datasets in one file issue”. We better check that out, too, though.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Find Suspects</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Glimpse</a></li></ul>
 <div class="tab-content">
@@ -744,13 +748,78 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
 <p>Doing it all in one go might then look like this:</p>
 <div class="cell">
-
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data/sugr/carelink-export-220217.csv"</span>, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">delim =</span> <span class="st">";"</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">Date =</span> <span class="fu">col_date</span>(<span class="at">format =</span> <span class="st">"%Y/%m/%d"</span>), </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">Time =</span> <span class="fu">col_time</span>(<span class="at">format =</span> <span class="st">"%H:%M:%S"</span>)), </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>), </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>, <span class="at">skip =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(index)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">index              =</span> index,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">datetime_rounded   =</span> <span class="fu">round_date</span>(<span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, time)), <span class="at">unit =</span> <span class="st">"minute"</span>),</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">datetime           =</span> <span class="fu">ymd_hms</span>(<span class="fu">paste</span>(date, time)),</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">date               =</span> date,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">wday               =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">week_start =</span> <span class="dv">1</span>),</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">time               =</span> time,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">basal_rate         =</span> basal_rate_u_h,</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_direct          =</span> bg_reading_mg_d_l,</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">bg_sensor          =</span> sensor_glucose_mg_d_l,</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_ratio          =</span> bwz_carb_ratio_g_u,</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_carbs          =</span> bwz_carb_input_grams,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_bg             =</span> bwz_bg_input_mg_d_l,</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_correction =</span> bwz_correction_estimate_u,</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_food       =</span> bwz_food_estimate_u,</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">wiz_est_unabsorbed =</span> bwz_unabsorbed_insulin_total_u,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_final        =</span> final_bolus_estimate, </span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_delivered    =</span> bolus_volume_delivered_u</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="splitting-cgm-pump-data" class="level1">
+<section id="splitting-cgm-pump-data" class="level1 page-columns page-full">
 <h1>Splitting CGM &amp; Pump Data</h1>
-<p>Now that the whole thing is cleaned up the only thing left to do is splitting pump and sensor data into seperate dataframes. We could of course leave it as is, but a split brings some advantages. At the initial reading of the data we already noticed the - professiponally speakng - sheer insane amount of <code>NA</code>s, which we can drastically reduce by the split. Additionally, the (semi-manual) pump data is not in sync with the cgm; while the latter happens very much exactly every 5 minutes<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, the former just happens whenever.</p>
+<p>Now that the whole thing is cleaned up the only thing left to do is splitting pump and sensor data into seperate dataframes. We could of course leave it as is, but a split brings some advantages. The CGM is not in sync with the (semi-manual) pump data; while the former happens very much exactly every 5 minutes<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, the latter just happens whenever. Additionally, at the initial reading of the data we already noticed the - professionally speaking - sheer insane amount of <code>NA</code>s, which we can drastically reduced by the split. When we color every cell of the data by whether it contains a value or not, it looks like this:</p>
+<div class="cell page-columns page-full">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_full <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map_df</span>(<span class="cf">function</span>(.){<span class="fu">ifelse</span>(., <span class="st">"&lt;NA&gt;"</span>, <span class="st">"not &lt;NA&gt;"</span>)}) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">row_num =</span> <span class="fu">length</span>(index) <span class="sc">-</span> <span class="fu">seq_along</span>(index)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>row_num,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"col"</span>, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff3300"</span>,<span class="st">"#00cc00"</span>)) <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x  =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y  =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display column-body">
+<p><img src="sugr-prep_files/figure-html/b3_viz_na-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>That’s a lot of unused tabular real estate, what a waste… We can clearly see where pump data ends and CGM data begins, though. The ‘green block’ on the left hand side naturally consists of the timedate and indexing columns. We can also see that there are still otherwise empty rows in the lower part (the CGM data). There are two approaches by which to split the thing: (1) simply <code>filter</code> the <code>bg_sensor</code> column by checking for <code>NA</code> values and conveniently drop the empty CGM rows, too, or (2) use the previously identified index-row, such that those empty rows are kept and can be used to further investigate whats going on there<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. For the sake of thoroughness, let’s go with Option 2, have a look at what’s going on there and possibly remove those empty rows later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cutoff_idx <span class="ot">&lt;-</span> data_full<span class="sc">$</span>index[<span class="fu">min</span>(<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(data_full<span class="sc">$</span>bg_sensor)))]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>cgm <span class="ot">&lt;-</span> data_full <span class="sc">%&gt;%</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(index <span class="sc">&gt;</span> cutoff_idx) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(index, datetime, date, wday, time, bg_sensor)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>pump <span class="ot">&lt;-</span> data_full <span class="sc">%&gt;%</span> </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(index <span class="sc">&lt;=</span> cutoff_idx) <span class="sc">%&gt;%</span> </span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>bg_sensor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
@@ -762,6 +831,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 <li id="fn1"><p>mostly hard-coded things like ratios or target values that change slightly during a day but stay the same across all days<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>other variables contain aforementioned “hard codings” or diagnostics on device usage such as low battery warnings<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>with an unspecific shift happening once a week whenever the sensor has to be replaced<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Actually, a third possibility is the extraction of only those empty rows within the CGM block, but losing the context in which they appear is not very practical.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
