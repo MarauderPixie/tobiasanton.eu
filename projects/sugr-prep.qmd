@@ -256,3 +256,115 @@ pump <- data_full %>%
   filter(index <= cutoff_idx) %>% 
   select(-bg_sensor)
 ```
+
+```{r b3_split_plot}
+#| code-fold: true
+#| fig-width: 10
+#| fig-height: 12
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "CGM Data"
+#|   - "Pump Data"
+cgm %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(alpha = .8) +
+    scale_fill_manual(values = c("#ff3300","#00cc00")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+
+pump %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(alpha = .8) +
+    scale_fill_manual(values = c("#ff3300","#00cc00")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+```
+
+Well, better. There's still room for improvement, especially regarding the pump data: Lots of small bolus deliveries (the last column) not accompanied by any other action, which we could further split up, for example. Doing so is mainly a matter of iterating on the steps we've taken so far and at this point we're already in a good position from which we one can start further exploration and analysis of the data. Therefore I consider this clean up procedure to be concluded. 
+
+<!-- 
+```{r b3_more_splitting}
+wiz <- pump %>% 
+  select(-bolus_delivered) %>% 
+  filter(!if_all(basal_rate:bolus_final, is.na))
+
+bolus <- pump %>% 
+  select(index:time, bolus_delivered) %>% 
+  filter(!is.na(bolus_delivered))
+```
+
+```{r b3_splitterer_plot}
+#| code-fold: true
+#| fig-width: 10
+#| fig-height: 10
+#| layout-ncol: 2
+#| fig-cap: 
+#|   - "Wizard Data"
+#|   - "Bolus Delivery Data"
+wiz %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(alpha = .8) +
+    scale_fill_manual(values = c("#ff3300","#00cc00")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+
+bolus %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(alpha = .8) +
+    scale_fill_manual(values = c("#00cc00", "#ff3300")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+```
+-->
