@@ -1,7 +1,7 @@
 ---
 title: "sugr: data preparation"
 subtitle: "Preparation of Continouos Glucose Measurements for usage in a shiny app"
-categories: [data cleaning, timeseries]
+categories: [data cleaning, timeseries, medical]
 image: "thumbs/diabetic.jpg"
 author: "Tobias"
 date: "08. Feb, 2023"
@@ -231,7 +231,7 @@ data_full %>%
                  names_transform = as_factor,
                  values_to = "na") %>% 
   ggplot(aes(col, row_num, fill = na)) +
-    geom_tile(alpha = .8) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
     scale_fill_manual(values = c("#ff3300","#00cc00")) +
     theme(legend.position = "top",
           legend.title = element_blank(),
@@ -274,7 +274,7 @@ cgm %>%
                  names_transform = as_factor,
                  values_to = "na") %>% 
   ggplot(aes(col, row_num, fill = na)) +
-    geom_tile(alpha = .8) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
     scale_fill_manual(values = c("#ff3300","#00cc00")) +
     theme(legend.position = "none",
           legend.title = element_blank(),
@@ -294,7 +294,7 @@ pump %>%
                  names_transform = as_factor,
                  values_to = "na") %>% 
   ggplot(aes(col, row_num, fill = na)) +
-    geom_tile(alpha = .8) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
     scale_fill_manual(values = c("#ff3300","#00cc00")) +
     theme(legend.position = "none",
           legend.title = element_blank(),
@@ -306,7 +306,7 @@ pump %>%
           panel.grid.minor = element_blank())
 ```
 
-Well, better. There's still room for improvement, especially regarding the pump data: Lots of small bolus deliveries (the last column) not accompanied by any other action, which we could further split up, for example. Doing so is mainly a matter of iterating on the steps we've taken so far and at this point we're already in a good position from which we one can start further exploration and analysis of the data. Therefore I consider this clean up procedure to be concluded. 
+Well, better. There's still room for improvement, especially regarding the pump data: Lots of small bolus deliveries (the last column) not accompanied by any other action, which we could further split up, for example. Doing so is mainly a matter of iterating on the steps we've taken so far and at this point we're already in a good position from which we one can start further exploration and analysis of the data. The initial clean- and split-up procedure can therefore be considered concluded. Cheers!
 
 <!-- 
 ```{r b3_more_splitting}
@@ -336,7 +336,7 @@ wiz %>%
                  names_transform = as_factor,
                  values_to = "na") %>% 
   ggplot(aes(col, row_num, fill = na)) +
-    geom_tile(alpha = .8) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
     scale_fill_manual(values = c("#ff3300","#00cc00")) +
     theme(legend.position = "none",
           legend.title = element_blank(),
@@ -356,7 +356,7 @@ bolus %>%
                  names_transform = as_factor,
                  values_to = "na") %>% 
   ggplot(aes(col, row_num, fill = na)) +
-    geom_tile(alpha = .8) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
     scale_fill_manual(values = c("#00cc00", "#ff3300")) +
     theme(legend.position = "none",
           legend.title = element_blank(),

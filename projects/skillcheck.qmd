@@ -4,6 +4,7 @@ subtitle: "Some dice roll simulations to compare skill check mechanics from vari
 author: "Tobias"
 date: "06. Feb, 2023"
 image: "thumbs/dice-2.jpg"
+draft: true
 ---
 
 ```{r init, include=FALSE}
@@ -17,8 +18,8 @@ theme_set(
 
 ```{r roll_d6, include=FALSE}
 roll_d6 <- function(n_dice, n_rolls, system = "sum") {
-  try(if(!(aggr %in% c("aw", "bitd", "sr", "none")))
-    rlang::abort("'aggr' must be one of: sum, success, none"))
+  try(if(!(system %in% c("aw", "bitd", "sr", "none")))
+    rlang::abort("'system' must be one of: aw, bitd, sr, none"))
 
   x <- replicate(n_rolls, sample(1:6, n_dice, replace = TRUE))
 
@@ -36,7 +37,7 @@ roll_d6 <- function(n_dice, n_rolls, system = "sum") {
       return(apply(ifelse(x > 4, 1, 0), MARGIN = 2, FUN = sum))
     }
   }
-  if (aggr == "none") {
+  if (system == "none") {
     return(x)
   }
 }
@@ -226,7 +227,7 @@ Ok, maybe we need to zoom in a bit.
 #| fig-height: 12
 
 sr6 %>% 
-  filter(between(dice_n, 4, 9)) %>% 
+  filter(between(dice_n, 3, 9)) %>% 
   mutate(
     `0/1/2` = case_when(
       result > 1 ~ "success",
@@ -267,4 +268,31 @@ sr6 %>%
     theme(legend.position = "top")
 ```
 
+Seeems very much like 0/1/2, starting with 4d6, are nice cutoffs? Maybe a bit too forgiving; you could design the game around that though - it also depends on the kind of game you want to play. Anyway, let's compare:
 
+```{r conpare_all}
+sr_cut <- sr6 %>% 
+  filter(between(dice_n, 3, 6)) %>% 
+  mutate(
+    `0/1/2` = case_when(
+      result > 1 ~ "success",
+      result < 1 ~ "fail",
+      TRUE ~ "partial"
+    ),
+    `1/2/3` = case_when(
+      result > 2 ~ "success",
+      result < 2 ~ "fail",
+      TRUE ~ "partial"
+    )
+  )
+```
+
+## Abby's Fate
+
+There's also a little game I helped to kickstart called **Abby's Fate**. It's not an RPG and it uses Poker Cards instead of dice, but there's an idea similar to games that are powered by the apocalypse: every character/player gets has a suit of cards - e.g. 2-Ace of Spades. They also have three abilities; a weak, a decent and a strong one. The cards they play determine the ability that gets used: 2-6, 7-10 and Jack-Ace. In numbers that looks like this:
+
+Range | _n_ cards | Percent
+------|-----------|---------
+2-6   | 5 | `r round(5/13, 1)`%
+7-10  | 4 | `r round(4/13, 1)`%
+Jack-Ace | 4 | `r round(4/13, 1)`%

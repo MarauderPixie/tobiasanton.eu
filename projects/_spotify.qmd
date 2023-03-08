@@ -1,0 +1,183 @@
+---
+title: "sth sth spotify"
+subtitle: "Exploring some I wrote an R package to access the spotify API"
+categories: [exploration, data viz, music, data manipulation, API]
+# image: "thumbs/diabetic.jpg"
+author: "Tobias"
+date: "14. Feb, 2023"
+draft: true
+---
+
+::: tldr
+**tl;dr:** Some while ago I wrote an R package to access the spotify API. 
+The metadata on artists, albums and songs acquired that way can be used to 
+gain some fun insights on your usage of that service.
+:::
+
+```{r init}
+library(tidyverse)
+library(spotifyr)
+```
+
+```{r id_shizzle}
+# Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+# Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+
+acc_tkn <- get_spotify_access_token()
+```
+
+# Abstract
+
+Spotify provides developers with a pretty well documented and easy to use API. 
+That way one can gain access to a sheer endless amount of mostly very well 
+curated metadata of the service's catalogue. A few years ago I wrote an R package
+to access that data in a somewhat user friendly way and to apply tidy data 
+principles^[You know, Wickham (2014): _every column is a variable, every row is 
+an observation..._] to the nested JSON datayou get from spotify. Since then, 
+other packages came along that did a more thorough job and which are still 
+actively maintained. First among those is certainly [`spotifyr`](https://www.rcharlie.com/spotifyr/), so we'll just go ahead and use that.
+
+
+```{r some_fiddle}
+#| cache: true
+black_feat <- get_artist_audio_features("Black Sabbath")
+black_sabb <- get_artist("5M52tdBnJaKSvOpJGz8mfZ")
+
+bs_albums1  <- get_artist_albums("5M52tdBnJaKSvOpJGz8mfZ", limit = 50)
+bs_albums2  <- get_artist_albums("5M52tdBnJaKSvOpJGz8mfZ", limit = 50, offset = 50)
+bs_albums3  <- get_artist_albums("5M52tdBnJaKSvOpJGz8mfZ", limit = 50, offset = 100)
+
+
+bs_albums <- bind_rows(
+  bs_albums1,
+  bs_albums2,
+  bs_albums3
+)
+
+album_spec_call1 <- get_albums(bs_albums$id[1:20])
+album_spec_call2 <- get_albums(bs_albums$id[21:40])
+album_spec_call3 <- get_albums(bs_albums$id[41:60])
+album_spec_call4 <- get_albums(bs_albums$id[61:80])
+album_spec_call5 <- get_albums(bs_albums$id[81:100])
+album_spec_call6 <- get_albums(bs_albums$id[101:120])
+album_spec_call7 <- get_albums(bs_albums$id[121:140])
+album_spec_call8 <- get_albums(bs_albums$id[141:150])
+
+albums_all <- bind_rows(album_spec_call1, 
+                        album_spec_call2, 
+                        album_spec_call3,
+                        album_spec_call4, 
+                        album_spec_call5, 
+                        album_spec_call6,
+                        album_spec_call7, 
+                        album_spec_call8) %>% 
+  mutate(
+    year = str_extract(release_date, "[[:digit:]]{4}") |> as.numeric()
+  ) %>% 
+  filter(album_type == "album") %>%
+  select(name, popularity, year, id)
+
+rm(bs_albums1, bs_albums2, bs_albums3, album_spec_call1, album_spec_call2, 
+   album_spec_call3, album_spec_call4, album_spec_call5, album_spec_call6,
+   album_spec_call7, album_spec_call8)
+
+# ozzy <- albums_all %>% 
+#   filter(year < 1980) %>% 
+#   select(album_type, name, popularity, year)
+# dio  <- albums_all %>% 
+#   filter(year > 1979) %>% 
+#   select(album_type, name, popularity, year)
+
+# x <- tibble(
+#     frontman = c(rep("Ozzy", nrow(ozzy)), 
+#                  rep("Dio", nrow(dio))),
+#     popularity = c(ozzy$popularity, dio$popularity)
+# )
+```
+
+```{r sort_through}
+
+```
+
+## Maybe Mistfits: Danzig or no Danzig?
+
+
+## Sepultura vs. Soulfly
+
+```{r sepul_soul}
+#| cache: true
+sepultura <- get_artist_audio_features("Sepultura")
+soulfly   <- get_artist_audio_features("Soulfly")
+
+sep_album_ids  <- unique(sepultura$album_id)
+soul_album_ids <- unique(soulfly$album_id)
+
+sep_albums1  <- get_albums(sep_album_ids[1:20])
+sep_albums2  <- get_albums(sep_album_ids[21:40])
+sep_albums3  <- get_albums(sep_album_ids[41:57])
+soul_albums1 <- get_albums(soul_album_ids[1:20])
+soul_albums2 <- get_albums(soul_album_ids[21:27])
+
+maxnomax <- bind_rows(
+  sep_albums1, sep_albums2, sep_albums3,
+  soul_albums1, soul_albums2
+) %>% 
+  mutate(
+    artist = map_chr(seq(n()), ~ artists[[.x]]$name),
+    year = str_extract(release_date, "[[:digit:]]{4}") |> as.numeric()
+  ) %>% 
+  select(artist, year, name, popularity, type, label)
+```
+
+I really don't see a reason why anything other than the single most popular release of an album should be picked.
+
+```{r dedupe}
+maxnomax %>% 
+    group_by(name) %>% 
+    summarise(
+        n = n(),
+        min = min(popularity),
+        mean = mean(popularity),
+        max = max(popularity)
+        ) %>% filter(n > 1)
+
+maxdef <- maxnomax %>% 
+  group_by(name) %>% 
+  filter(popularity == max(popularity)) %>% 
+  ungroup() %>% 
+  group_by(artist, year) %>% 
+  filter(popularity == max(popularity)) %>% 
+  ungroup() %>% 
+  mutate(
+    # maxorno = ifelse(artist == "Soulfly" | year > 1997, "No Max", "Max"),
+    grp = case_when(
+      artist == "Sepultura" & year > 1997 ~ "Sepultura - No Max",
+      artist == "Soulfly" ~ "Soulfly",
+      TRUE ~ "Sepultura - Max"
+    ) %>% as_factor()
+  )
+```
+
+```{r aov}
+library(afex)
+
+aov_ez("name", "popularity", maxdef, between = "grp")
+```
+
+
+## Irgendwas mit Playlists
+
+```{r}
+all_pls1 <- get_user_playlists(my_profile$id, limit = 50)
+all_pls2 <- get_user_playlists(my_profile$id, limit = 50, offset = 50)
+all_pls3 <- get_user_playlists(my_profile$id, limit = 50, offset = 100)
+all_pls4 <- get_user_playlists(my_profile$id, limit = 50, offset = 150)
+all_pls5 <- get_user_playlists(my_profile$id, limit = 50, offset = 200)
+all_pls6 <- get_user_playlists(my_profile$id, limit = 50, offset = 250)
+all_pls7 <- get_user_playlists(my_profile$id, limit = 50, offset = 300)
+
+playlists <- bind_rows(all_pls1, all_pls2, all_pls3, 
+                       all_pls4, all_pls5, all_pls6, all_pls7)
+
+rm(all_pls1, all_pls2, all_pls3, all_pls4, all_pls5, all_pls6, all_pls7)
+```
