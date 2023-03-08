@@ -22,8 +22,8 @@ website:
         text: CV
       - href: projects.qmd
         text: Projects
-      - href: packages.qmd
-        text: R Packages
+      # - href: packages.qmd
+      #   text: R Packages
     right:
       - icon: github
         aria-label: GitHub
