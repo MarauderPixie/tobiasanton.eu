@@ -149,10 +149,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link" href="../projects.html">
  <span class="menu-text">Projects</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../packages.html">
- <span class="menu-text">R Packages</span></a>
-  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -187,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                                 <div class="quarto-categories">
                 <div class="quarto-category">data cleaning</div>
                 <div class="quarto-category">timeseries</div>
+                <div class="quarto-category">medical</div>
               </div>
                   </div>
   </div>
@@ -627,7 +624,11 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, 
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">bolus_delivered =</span> bolus_volume_delivered_u</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: 2 failed to parse.</code></pre>
+<pre><code>Warning: There was 1 warning in `transmute()`.
+ℹ In argument: `datetime = round_date(ymd_hms(paste(date, time)), unit =
+  "minute")`.
+Caused by warning:
+!  2 failed to parse.</code></pre>
 </div>
 </div>
 </section>
@@ -793,7 +794,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">height =</span> .<span class="dv">95</span>, <span class="at">width =</span> .<span class="dv">95</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff3300"</span>,<span class="st">"#00cc00"</span>)) <span class="sc">+</span></span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
@@ -832,7 +833,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">height =</span> .<span class="dv">95</span>, <span class="at">width =</span> .<span class="dv">95</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff3300"</span>,<span class="st">"#00cc00"</span>)) <span class="sc">+</span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
@@ -851,7 +852,7 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 <span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
 <span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">height =</span> .<span class="dv">95</span>, <span class="at">width =</span> .<span class="dv">95</span>, <span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
 <span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff3300"</span>,<span class="st">"#00cc00"</span>)) <span class="sc">+</span></span>
 <span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
 <span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
@@ -883,79 +884,78 @@ $ ...51                                 &lt;lgl&gt; NA, NA, NA, NA</code></pre>
 </div>
 </div>
 </div>
-<p>Well, better. There’s still room for improvement, especially regarding the pump data: Lots of small bolus deliveries (the last column) not accompanied by any other action, which we could further split up, for example.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wiz <span class="ot">&lt;-</span> pump <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>bolus_delivered) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">if_all</span>(basal_rate<span class="sc">:</span>bolus_final, is.na))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>bolus <span class="ot">&lt;-</span> pump <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(index<span class="sc">:</span>time, bolus_delivered) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bolus_delivered))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>wiz <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="cf">function</span>(.){<span class="fu">ifelse</span>(., <span class="st">"&lt;NA&gt;"</span>, <span class="st">"not &lt;NA&gt;"</span>)}) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">row_num =</span> <span class="fu">length</span>(index) <span class="sc">-</span> <span class="fu">seq_along</span>(index)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>row_num,</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"col"</span>, </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#ff3300"</span>,<span class="st">"#00cc00"</span>)) <span class="sc">+</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x  =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y  =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>bolus <span class="sc">%&gt;%</span> </span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(is.na) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_df</span>(<span class="cf">function</span>(.){<span class="fu">ifelse</span>(., <span class="st">"&lt;NA&gt;"</span>, <span class="st">"not &lt;NA&gt;"</span>)}) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">row_num =</span> <span class="fu">length</span>(index) <span class="sc">-</span> <span class="fu">seq_along</span>(index)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>row_num,</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"col"</span>, </span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_transform =</span> as_factor,</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"na"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(col, row_num, <span class="at">fill =</span> na)) <span class="sc">+</span></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="at">alpha =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#00cc00"</span>, <span class="st">"#ff3300"</span>)) <span class="sc">+</span></span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x  =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y  =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="sugr-prep_files/figure-html/b3_splitterer_plot-1.png" class="img-fluid figure-img" width="960"></p>
-<p></p><figcaption class="figure-caption">Wizard Data</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="sugr-prep_files/figure-html/b3_splitterer_plot-2.png" class="img-fluid figure-img" width="960"></p>
-<p></p><figcaption class="figure-caption">Bolus Delivery Data</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
+<p>Well, better. There’s still room for improvement, especially regarding the pump data: Lots of small bolus deliveries (the last column) not accompanied by any other action, which we could further split up, for example. Doing so is mainly a matter of iterating on the steps we’ve taken so far and at this point we’re already in a good position from which we one can start further exploration and analysis of the data. The initial clean- and split-up procedure can therefore be considered concluded. Cheers!</p>
+<!-- 
+
+::: {.cell}
+
+```{.r .cell-code}
+wiz <- pump %>% 
+  select(-bolus_delivered) %>% 
+  filter(!if_all(basal_rate:bolus_final, is.na))
+
+bolus <- pump %>% 
+  select(index:time, bolus_delivered) %>% 
+  filter(!is.na(bolus_delivered))
+```
+:::
+
+::: {.cell layout-ncol="2"}
+
+```{.r .cell-code  code-fold="true"}
+wiz %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
+    scale_fill_manual(values = c("#ff3300","#00cc00")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+```
+
+::: {.cell-output-display}
+![Wizard Data](sugr-prep_files/figure-html/b3_splitterer_plot-1.png){width=960}
+:::
+
+```{.r .cell-code  code-fold="true"}
+bolus %>% 
+  map_df(is.na) %>% 
+  map_df(function(.){ifelse(., "<NA>", "not <NA>")}) %>% 
+    mutate(row_num = length(index) - seq_along(index)) %>% 
+    pivot_longer(cols = -row_num,
+                 names_to = "col", 
+                 names_transform = as_factor,
+                 values_to = "na") %>% 
+  ggplot(aes(col, row_num, fill = na)) +
+    geom_tile(height = .95, width = .95, alpha = .8) +
+    scale_fill_manual(values = c("#00cc00", "#ff3300")) +
+    theme(legend.position = "none",
+          legend.title = element_blank(),
+          axis.text.x  = element_blank(),
+          axis.text.y  = element_blank(),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank())
+```
+
+::: {.cell-output-display}
+![Bolus Delivery Data](sugr-prep_files/figure-html/b3_splitterer_plot-2.png){width=960}
+:::
+:::
+
+-->
 
 
 </section>

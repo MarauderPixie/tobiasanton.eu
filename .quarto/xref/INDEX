@@ -31,5 +31,11 @@
   },
   "projects/sugr-shiny.qmd": {
     "sugr-shiny.html": "be7833c8"
+  },
+  "projects/genius.qmd": {
+    "genius.html": "8a3fb92b"
+  },
+  "projects/spotify.qmd": {
+    "spotify.html": "25de46f7"
   }
 }

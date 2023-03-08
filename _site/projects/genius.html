@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Tobias">
-<meta name="dcterms.date" content="2023-02-06">
+<meta name="dcterms.date" content="2023-02-16">
 
-<title>Tobias Anton - Skill Check Comparison</title>
+<title>Tobias Anton - API is a four letter word</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,69 +22,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -178,9 +115,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Skill Check Comparison</h1>
-            <p class="subtitle lead">Some dice roll simulations to compare skill check mechanics from various TTRPGs</p>
-                      </div>
+      <h1 class="title">API is a four letter word</h1>
+            <p class="subtitle lead">Exploration of (annotated) Song Lyrics accessed via the Genius API</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">exploration</div>
+                <div class="quarto-category">data viz</div>
+                <div class="quarto-category">music</div>
+                <div class="quarto-category">text</div>
+                <div class="quarto-category">API</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -196,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 6, 2023</p>
+        <p class="date">February 16, 2023</p>
       </div>
     </div>
     
@@ -212,124 +156,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#checks-from-different-systems" id="toc-checks-from-different-systems" class="nav-link active" data-scroll-target="#checks-from-different-systems">Checks from different Systems</a>
-  <ul class="collapse">
-  <li><a href="#additional-mechanics" id="toc-additional-mechanics" class="nav-link" data-scroll-target="#additional-mechanics">Additional Mechanics</a></li>
-  </ul></li>
-  <li><a href="#simulations" id="toc-simulations" class="nav-link" data-scroll-target="#simulations">Simulations</a>
-  <ul class="collapse">
-  <li><a href="#sequential-cut-offs" id="toc-sequential-cut-offs" class="nav-link" data-scroll-target="#sequential-cut-offs">Sequential Cut-Offs</a></li>
-  <li><a href="#abbys-fate" id="toc-abbys-fate" class="nav-link" data-scroll-target="#abbys-fate">Abby’s Fate</a></li>
-  </ul></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#who-we" id="toc-who-we" class="nav-link" data-scroll-target="#who-we">Who we</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 <div class="tldr">
-<p><strong>tl;dr:</strong> I wrote this once already, then the IDE just… quit. Now I’m not inclined to repeat myself anytime soon. &gt;=(</p>
+<p><strong>tl;dr:</strong> Genius is one of the major repositories for looking up song lyrics. These can be annotated by it’s users. The service also provides an API to access the lyrics as well as the annotations. Let’s see what we can do with that and have some fun!</p>
 </div>
-<section id="checks-from-different-systems" class="level1">
-<h1>Checks from different Systems</h1>
-<p>Let’s take a look at some d6-based games and how they resolve their rolls:</p>
-<ul>
-<li><strong>Apocalypse World:</strong> roll 2d6 and add their results; on a 10+ you succeed, on 7-9 you succeed but at a cost and on 6 or less you usually fail</li>
-<li><strong>Blades in the Dark:</strong> roll several d6 (usually 1-4) based on your stats and take the single highest result; you succeed on a 6 and even gain some extra on two 6s (critical success), a 4 or 5 is a partial success similar to the above and on a 1-3 “it’s a bad outcome. Things go poorly. You probably don’t achieve your goal and you suffer complications, too”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li><strong>Shadowrun:</strong> you roll anything from 1 to 30 dice (usually about 3 to 12 though) and count all 5s, 6s (your successes) and 1s (if more than half of the rolled dice are 1s, you fail spectacularly); there are no baseline thresholds - sometimes you ‘roll off’ against the GM, sometimes there are rules to dictate the threshold and rather often the GM comes up with some arbitrary number you need to pass</li>
-</ul>
-<p>Additionally there are ways to tinker with the results and alter the player’s chances. In <strong>AW</strong> you sometimes flatly add (or substract) numbers to the result. <strong>BitD</strong> gives or takes dice to or from you and the same does <strong>SR</strong>, albeit with more dice.</p>
-<p>As you can see, the first two examples are quite similar and pretty straight forward, whereas the third is a whole different kind of beast. This is why I’m writing this: I’ll simulate the outcomes of the different approaches and try to find one that <em>feels shadowrun</em> but resolves in a distinct way like with the other two.</p>
-<section id="additional-mechanics" class="level2">
-<h2 class="anchored" data-anchor-id="additional-mechanics">Additional Mechanics</h2>
-<p>I guess? Idk yet.</p>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<p>sth sth <code>geniusr</code> &amp; <code>tidytext</code></p>
 </section>
-</section>
-<section id="simulations" class="level1 page-columns page-full">
-<h1>Simulations</h1>
-<p>This is the interesting part. How do AW and BitD compare and how does SR fit in? I begin with sampling, oh let’s just say, 2000 rolls - where ‘a roll’ is full skill check instead of single dice rolls. For simplicity, I only make 2000 rolls for each game once.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display column-body">
-<p><img src="skillcheck_files/figure-html/plot1-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-<p>As we can see, the results largely scale up the same, although in <em>Blades in the Dark</em> rolls are more forgiving than in <em>Apocalypse World</em>; out otherwise, the success rates in BitD are generally a little higher. This suits the general vibes of the games: in BitD, the consequences of failing are more dire overall, therefore it’s kinda fair you don’t fail too easy or often. Let’s take a look at <em>Shadowrun</em>, though. First at the raw number of successes (5s and 6s) and then by setting some thresholds to shoehorn everything into three success qualities.</p>
-<section id="sequential-cut-offs" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="sequential-cut-offs">Sequential Cut-Offs</h2>
-<p>Since it’s not possible to have 3 qualites with only one die by Shadowrun standarts (the roll is either a success or not), we’ll start with 2d6:</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display column-body">
-<p><img src="skillcheck_files/figure-html/sr_cutoffs1-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-<p>Ok, maybe we need to zoom in a bit.</p>
-<div class="cell page-columns page-full">
-<div class="cell-output-display column-body">
-<p><img src="skillcheck_files/figure-html/sr_cutoffs2-1.png" class="img-fluid" width="960"></p>
-</div>
-</div>
-<p>Seeems very much like 0/1/2, starting with 4d6, are nice cutoffs? Maybe a bit too forgiving; you could design the game around that though - it also depends on the kind of game you want to play. Anyway, let’s compare:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sr_cut <span class="ot">&lt;-</span> sr6 <span class="sc">%&gt;%</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(dice_n, <span class="dv">3</span>, <span class="dv">6</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">0/1/2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      result <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"success"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      result <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"fail"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"partial"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">1/2/3</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      result <span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"success"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      result <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"fail"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"partial"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="abbys-fate" class="level2">
-<h2 class="anchored" data-anchor-id="abbys-fate">Abby’s Fate</h2>
-<p>There’s also a little game I helped to kickstart called <strong>Abby’s Fate</strong>. It’s not an RPG and it uses Poker Cards instead of dice, but there’s an idea similar to games that are powered by the apocalypse: every character/player gets has a suit of cards - e.g.&nbsp;2-Ace of Spades. They also have three abilities; a weak, a decent and a strong one. The cards they play determine the ability that gets used: 2-6, 7-10 and Jack-Ace. In numbers that looks like this:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Range</th>
-<th><em>n</em> cards</th>
-<th>Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>2-6</td>
-<td>5</td>
-<td>0.4%</td>
-</tr>
-<tr class="even">
-<td>7-10</td>
-<td>4</td>
-<td>0.3%</td>
-</tr>
-<tr class="odd">
-<td>Jack-Ace</td>
-<td>4</td>
-<td>0.3%</td>
-</tr>
-</tbody>
-</table>
+<section id="who-we" class="level1">
+<h1>Who we</h1>
 
 
 </section>
-</section>
 
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>quoted from https://bladesinthedark.com/core-system<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
