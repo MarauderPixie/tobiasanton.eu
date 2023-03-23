@@ -1,0 +1,158 @@
+---
+title: "Curriculum Vitae"
+author: Tobias Anton
+date: "`r format(Sys.time(), '%d. %b, %Y')`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+# Aside
+
+<!-- ![Tobias Anton](itsame.jpg){width="80%"} -->
+
+## Kontakt {#contact}
+
+-   <i class="fa fa-envelope"></i> [tobias.anton.85\@gmail.com](mailto:tobias.anton.85@gmail.com){.email}
+-   <i class="fa fa-github"></i> [github.com/marauderpixie](https://github.com/marauderpixie)
+-   <i class="fa fa-globe"></i> [tobiasanton.eu](https://tobiasanton.eu)
+-   <i class="fa fa-phone"></i> +49 173-453-5865
+-   Offene Fragen beantworte ich jederzeit gerne.
+
+## Kompetenzen {#skills}
+
+-   Fließendes Englisch in Schrift und Sprache (C1+)
+
+-   Fundierte Erfahrungen in bayesianischer und klassischer Statistik, Analyse und Modellierung
+
+-   Begeisterung für Visualisierung, Exploration und Kommunikation von Daten
+
+-   Hochqualifiziert im Umgang mit R, R-Shiny, SQL, Git, Stan, Continuous Integration und der Erstellung automatisierter Reports
+
+## Disclaimer {#disclaimer}
+
+<!-- This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown). -->
+
+Bremen, `r format(Sys.time(), '%d. %b, %Y')`
+
+# Main
+
+## Tobias Anton {#title}
+
+### Auf der Suche nach einer Vollzeitstelle im Bereich Data Science
+
+::: {style="text-align: justify;"}
+Nach Abschluss meines Masterstudiums freue ich mich darauf, in das weite Feld der Datenwissenschaft
+einzutauchen. Meine Stärken liegen in der Planung und Durchführung von strengen Versuchsanordnungen, 
+der Exploration und Analyse strukturierter und unstrukturierter Daten sowie der einfach verständlichen 
+Kommunikation der Ergebnisse.
+:::
+
+## Ausbildung {data-icon="graduation-cap" data-concise="true"}
+
+### M.Sc. in Cognitive Science
+
+Artificial Intelligence und Cognitive Psychology
+
+Universität Osnabrück, Deutschland
+
+2022
+
+Thesis: *On the role of rule instructions and ordering in category learning* (Grade: 1.4)
+
+### B.Sc. in Psychologie
+
+Arbeits- & Organisationspsychologie und Neuroscience
+
+Universität Bremen, Deutschland
+
+2018
+
+Thesis: *Feedback-modulierte quasi-realistische binäre Entscheidungen in einem wetterbasierten Kontext* (Note: 1.0)
+
+### Abitur
+
+auf dem zweiten Bildungsweg am Abendgymnasium Sophie Scholl
+
+Osnabrück, Deutschland
+
+2014
+
+## Berufserfahrung {data-icon="suitcase"}
+
+### Hilfswissenschaftler
+
+Cognitive Modeling Group, IKW
+
+Uni Osnabrück, Deutschland
+
+2022 - 2019
+
+::: {style="text-align: justify;"}
+-   **Online-Lehrbuch über _Scientific Data Analysis_** ([link](https://michael-franke.github.io/intro-data-analysis/))  
+    Verantwortlich für die kontinuierliche & automatisierte Integration und Kompilierung von Rmarkdown, 
+    Latex und Javascript zu PDF und HTML
+-   **Advanced Bayesian Data Analysis**  
+    Mitarbeit an zweiwöchentlicher Aufgabenstellung in Form von Rmarkdown-Aufgabenlättern und deren Bewertung
+-   **Experimental Psychology Lab**  
+    Erarbeitung und Implementation wissenschaftlicher Online-Experimente zur Replikation durch Studierende, 
+    sowie Vermittlung von Open Science Praktiken und Betreuung zur statistischen Analyse der Projekte
+-   **Introduction to Data Analysis**  
+    Ähnlich zu _QM I & II_ (s.u.), mit stärkerem Fokus auf die Arbeit mit R, 
+    Visualisierung und "tidy data" Prinzipien
+:::
+
+
+### Studentischer Mitarbeiter
+
+FB 11 - Humanwissenschaften
+
+Uni Bremen, Deutschland
+
+2021 - 2015
+
+::: {style="text-align: justify;"}
+- **Quantitative Methoden I & II**  
+  Eigenverantwortliche Vermittlung von Grundlagen der Inferenz- und deskriptiven Statistik, 
+  sowie ausführliche und weiterführende Besprechung wöchentlicher Aufgaben
+- **Experimentalpraktikum**  
+  Betreuung von Studierendengruppen bei der Findung, Planung, Durchführung und Analyse 
+  einer experimentellen Forschungsarbeit
+- **Statistische Programmierung mit R** ([link](https://r-intro.tadaa-data.de/))  
+  Jährliche Blockveranstaltung im Vorlesungsformat
+- _Statistische Datenanalyse (R)_ im Public Health Studiengang
+:::
+
+### Bühnentechniker
+
+Städtische Bühnen Osnabrück, u.a.
+
+Osnabrück, Deutschland
+
+bis 2016
+
+```{=html}
+<!-- Additional Skills {data-icon=screwdriver-wrench}
+--------------------------------------------------------------------------------
+
+### Social Skills
+
+- Small group management  
+- Project management
+
+anywhere, rly
+
+ongoing
+
+### Software Skills
+
+<i class="fa-brands fa-vuejs"></i> Vue.js | <i class="fa fa-css3"></i> CSS | <i class="fa brands fa-git-alt"></i> Git 
+
+The Internet
+
+ongoing
+-->
+```

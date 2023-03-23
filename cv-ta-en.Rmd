@@ -1,0 +1,138 @@
+---
+title: "Curriculum Vitae"
+author: Tobias Anton
+date: "`r format(Sys.time(), '%d. %b, %Y')`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+# Aside
+
+<!-- ![Tobias Anton](itsame.jpg){width="90%"} -->
+
+## Contact Info {#contact}
+
+-   <i class="fa fa-envelope"></i> [tobias.anton.85\@gmail.com](mailto:tobias.anton.85@gmail.com){.email}
+-   <i class="fa fa-github"></i> [github.com/marauderpixie](https://github.com/marauderpixie)
+-   <i class="fa fa-globe"></i> [tobiasanton.eu](https://tobiasanton.eu)
+-   <i class="fa fa-phone"></i> +49 173-453-5865
+-   For more information, please contact me via email.
+
+## Skills {#skills}
+
+-   Advanced experience in bayesian and frequentist statistical analysis and modeling
+
+-   Passionate about data visualization, exploration and communication
+
+-   Highly skilled in R, R-Shiny, Stan, Continuous Integration and LaTeX
+
+## Disclaimer {#disclaimer}
+
+<!-- This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown). -->
+
+Last updated on `r format(Sys.time(), '%d. %b, %Y')`.
+
+# Main
+
+## Tobias Anton {#title}
+
+### Currently looking for a full-time position in Data Science
+
+::: {style="text-align: justify;"}
+After finishing my master's I'm thrilled to dive into the vast field of data science. My strong suits are the planning and execution of rigorous experimental setups, the exploration and analysis of structured and unstructured data as well as automated reporting on the results. I invite you to visit my website to get an impression of my work.
+:::
+
+## Education {data-icon="graduation-cap" data-concise="true"}
+
+### Universität Osnabrück
+
+**M.Sc. in Cognitive Science**\
+major topics: Artificial Intelligence and Cognitive Psychology
+
+Osnabrück, Germany
+
+2022
+
+Thesis: *On the role of rule instructions and ordering in category learning*
+
+### Universität Bremen
+
+**B.Sc. in Psychology**\
+major topics: Work & Organizational Psychology and Neuroscience
+
+Bremen, Germany
+
+2018
+
+Thesis: *Feedback-modulierte quasi-realistische binäre Entscheidungen in einem wetterbasierten Kontext*
+
+### Abendgymnasium Sophie Scholl
+
+**High School Diploma** / Abitur
+
+Osnabrück, Germany
+
+2014
+
+## Professional Experience {data-icon="suitcase"}
+
+### Scientific Assistant
+
+at the Cognitive Modeling Group, Uni Osnabrück\
+- Collaboration in the writing of an online-textbook on Scientific Data Analysis ([link](https://michael-franke.github.io/intro-data-analysis/))\
+- Tutor on Advanced Bayesian Data Analysis\
+- Tutor on Experimental Psychology Lab\
+- Tutor on Introduction to Data Analysis\
+- Implementation of online experiments\
+- Research on scientific articles for replication by students
+
+Osnabrück, Germany
+
+2019 - 2022
+
+### Student Assistant
+
+at Fachbereich 11 of Uni Bremen\
+- Tutor on Statistics I & II\
+- Tutor on Experimental Practice\
+- Lectures in Statistical Programming with R ([link](https://r-intro.tadaa-data.de/))\
+- Tutor on Statistical Data Analysis (R)
+
+Bremen, Germany
+
+2015 - 2021
+
+### Stagehand
+
+Städtische Bühnen Osnabrück, among others
+
+Osnabrück, Germany
+
+until 2016
+
+```{=html}
+<!-- Additional Skills {data-icon=screwdriver-wrench}
+--------------------------------------------------------------------------------
+
+### Social Skills
+
+- Small group management  
+- Project management
+
+anywhere, rly
+
+ongoing
+
+### Software Skills
+
+<i class="fa-brands fa-vuejs"></i> Vue.js | <i class="fa fa-css3"></i> CSS | <i class="fa brands fa-git-alt"></i> Git 
+
+The Internet
+
+ongoing
+-->
+```

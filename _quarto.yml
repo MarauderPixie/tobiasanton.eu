@@ -2,9 +2,11 @@ project:
   type: website
   render:
     - "*.qmd"
-    - "!cv.Rmd"
+    - "!cv-ta-de.Rmd"
+    - "!cv-ta-en.Rmd"
   resources:
-    - cv.html
+    - cv-ta-de.html
+    - cv-ta-en.html
     - cv_files
 
 website:
@@ -18,8 +20,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: cv.html
-        text: CV
+      - text: CV
+        menu:
+          - href: cv-ta-de.html
+            text: "Deutsch"
+          - href: cv-ta-en.html
+            text: "English"
       - href: projects.qmd
         text: Projects
       # - href: packages.qmd
