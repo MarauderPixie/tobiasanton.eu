@@ -1,7 +1,8 @@
 ---
 title: Tobias Anton
-description: AI and Cognitive Psychology
-date: "`r format(Sys.time(), '%d. %b, %Y')`"
+description: Data Analysis & R Development
+date: today
+date-format: medium
 page-layout: full
 about: 
   id: hero-heading
@@ -36,8 +37,8 @@ about:
 
 With a passion for telling stories with data, I'm especially interested 
 in data visualisation and the psychological and perceptual pitfalls thereof. 
-Apart from that I just enjoy the collaborative storytelling that are tabletop 
-and pen & paper RPGs.
+Please have a look at my github profile or my projects here to get an impression 
+of my work.
 
 
 
@@ -45,9 +46,9 @@ and pen & paper RPGs.
 
 **Analysis Ready Data Development | Data Scientist / R-Developer | June 2023 - Aug 2024**
 
-Advanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021
+Advanced Bayesian Data Analysis | Research Assistant / Tutor | April 2021 - Sept 2021
 
-Quantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018
+Quantitative Methods I & II | Lecturer / Tutor | Oct 2015 - Sept 2018
 
 
 ## Education
