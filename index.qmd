@@ -31,8 +31,7 @@ about:
 [{{< ai osf size=2x >}}](https://osf.io/mq7zh)
 [{{< fa brands linkedin size=2x >}}](https://www.linkedin.com/in/tobias-anton-a163a4252/)
 [{{< fa brands github size=2x >}}](https://github.com/marauderpixie)
-[{{< fa brands mastodon size=2x >}}](https://norden.social/@marauderpixie)
-[{{< fa solid envelope size=2x >}}](mailto:tobanton@uni-osnabrueck.de)
+[{{< fa solid envelope size=2x >}}](mailto:tobias.anton@businesspartner.roche.com)
 :::
 
 With a passion for telling stories with data, I'm especially interested 
@@ -42,6 +41,14 @@ and pen & paper RPGs.
 
 
 
+## Experience
+
+**Analysis Ready Data Development | Data Scientist / R-Developer | June 2023 - Aug 2024**
+
+Advanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021
+
+Quantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018
+
 
 ## Education
 
@@ -50,11 +57,5 @@ Universität Osnabrück | Oct 2018 - Dec 2022
 
 **B. Sc. Psychology** | Work- and Organisational Psychology and Neuroscience  
 Universität Bremen | Oct 2014 - June 2018
-
-## Experience
-
-Advanced Bayesian Data Analysis | Tutor / Research Assistant | April 2021 - Sept 2021
-
-Quantitative Methods I & II | Tutor / Lecturer | Oct 2015 - Sept 2018
 
 :::

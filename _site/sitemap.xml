@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tobiasanton.eu/about.html</loc>
-    <lastmod>2023-03-23T12:51:47.707Z</lastmod>
+    <loc>https://tobiasanton.eu/projects.html</loc>
+    <lastmod>2024-07-17T08:01:32.419Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/index.html</loc>
-    <lastmod>2023-03-23T12:51:48.371Z</lastmod>
+    <lastmod>2024-07-17T08:29:31.261Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tobiasanton.eu/about.html</loc>
+    <lastmod>2024-07-17T08:01:32.340Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/packages.html</loc>
-    <lastmod>2023-03-23T12:51:49.035Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tobiasanton.eu/projects.html</loc>
-    <lastmod>2023-03-23T12:51:49.699Z</lastmod>
+    <lastmod>2024-07-17T08:01:32.419Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/projects/sugr-prep.html</loc>
-    <lastmod>2023-03-23T12:51:52.403Z</lastmod>
+    <lastmod>2024-07-17T08:01:32.444Z</lastmod>
   </url>
 </urlset>
