@@ -55,3 +55,6 @@ format:
 
 execute:
   freeze: auto
+
+filters:
+  - shinylive
