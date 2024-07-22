@@ -1,11 +1,46 @@
 ---
 title: "sugr: make it shiny"
 subtitle: "A shiny app to conveniently browse blood glucose history"
+categories: [timeseries, medical, ETL, visualisation]
 author: "Tobias"
-date: "`r format(Sys.time(), '%d. %b, %Y')`"
+date: today
+date-format: medium
 draft: true
 ---
 
-# Nothing yet
+::: tldr
+**tl;dr:**
 
-Just some placeholder document for now.
+- [here's a shiny app to explore CGM data](https://marauderpixie.shinyapps.io/sugr_explorer/)
+- [here's the code](https://github.com/MarauderPixie/sugr_explorer)
+- [see this post for the data-cleanup procedure](https://tobiasanton.eu/projects/sugr-prep)
+:::
+
+
+# Making sense of the CGM data
+
+In a previous post I cleaned up the data provided by Medtronic, now let's build
+a shiny app to visualise it. There are 3 areas of interest available from the data:
+
+1. The glucose levels (GL) in 5 minute intervals. This is the bulk of the data.
+2. The amount of carbohydrate intake. However, due to unfathomably bad 
+user prompting, there are _a lot_ of false positives.^[There is no way to just 
+manually tell the pump to inject insulin and the workaround is to do that via 
+pseudo-carb-intake.]
+3. The amount of insulin injected for GL correction and carb intake. 
+
+The Minimed & Guardian setup is more or less a closed loop system and injects bolus
+insulin according to the current GL and GL prediction. However, the bolus amount is
+**not** available from the data.
+
+
+# Structure
+
+The app isn't too big or complicated and therefore it's suffice to put the whole of it 
+into a single `app.R` script instead of splitting it into specific logic / UI / misc files. 
+For the most part, it consists of only a few elements:
+
+- a sidebar to control some of the elements to display, like the time range, weekdays or 
+something specific to the visualization or data at hand
+- a tab-selector for various aspects of visualization
+- the actual plots / graphs / etc
