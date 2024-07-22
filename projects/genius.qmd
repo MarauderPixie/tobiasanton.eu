@@ -4,7 +4,8 @@ subtitle: "Exploration of (annotated) Song Lyrics accessed via the Genius API"
 categories: [exploration, data viz, music, text, API]
 # image: "thumbs/diabetic.jpg"
 author: "Tobias"
-date: "16. Feb, 2023"
+date: today
+date-format: medium
 draft: true
 ---
 

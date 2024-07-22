@@ -2,7 +2,8 @@
 title: "Skill Check Comparison"
 subtitle: "Some dice roll simulations to compare skill check mechanics from various TTRPGs"
 author: "Tobias"
-date: "06. Feb, 2023"
+date: today
+date-format: medium
 image: "thumbs/dice-2.jpg"
 draft: true
 ---

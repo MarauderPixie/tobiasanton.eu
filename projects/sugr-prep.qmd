@@ -1,10 +1,11 @@
 ---
 title: "sugr: data preparation"
 subtitle: "Preparation of Continouos Glucose Measurements for usage in a shiny app"
-categories: [data cleaning, timeseries, medical]
+categories: [data cleaning, timeseries, medical, ETL]
 image: "thumbs/diabetic.jpg"
 author: "Tobias"
-date: "08. Feb, 2023"
+date: today
+date-format: medium
 ---
 
 ::: tldr
