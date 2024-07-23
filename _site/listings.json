@@ -2,6 +2,7 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/sugr-shiny.html",
       "/projects/sugr-prep.html"
     ]
   }

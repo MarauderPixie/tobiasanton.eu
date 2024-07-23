@@ -5,7 +5,6 @@ categories: [timeseries, medical, ETL, visualisation]
 author: "Tobias"
 date: today
 date-format: medium
-draft: true
 ---
 
 ::: tldr

@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Projects",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "sugr: data preparation\n\n\nPreparation of Continouos Glucose Measurements for usage in a shiny app\n\n\n\ndata cleaning\n\n\ntimeseries\n\n\nmedical\n\n\nETL\n\n\n\n\n\n\nJul 22, 2024\n\n\nTobias\n\n\n\n\n\n\nNo matching items"
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "index.html",
@@ -28,13 +28,6 @@
     "text": "M. Sc. Cogntive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "packages.html",
     "href": "packages.html",
     "title": "R Packages",
@@ -54,6 +47,13 @@
     "title": "R Packages",
     "section": "ddateR",
     "text": "ddateR\nHail Eris! A perpetual date converter from the gregorian to the poee calendar. Basically an R implementation of the ddate function from util-linux."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "sugr: make it shiny\n\n\nA shiny app to conveniently browse blood glucose history\n\n\n\n\ntimeseries\n\n\nmedical\n\n\nETL\n\n\nvisualisation\n\n\n \n\n\n\n\nJul 23, 2024\n\n\nTobias\n\n\n\n\n\n\n  \n\n\n\n\nsugr: data preparation\n\n\nPreparation of Continouos Glucose Measurements for usage in a shiny app\n\n\n\n\ndata cleaning\n\n\ntimeseries\n\n\nmedical\n\n\nETL\n\n\n \n\n\n\n\nApr 16, 2023\n\n\nTobias\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/sugr-prep.html",
@@ -96,5 +96,19 @@
     "title": "sugr: data preparation",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nmostly hard-coded things like ratios or target values that change slightly during a day but stay the same across all days↩︎\nother variables contain aforementioned “hard codings” or diagnostics on device usage such as low battery warnings↩︎\nwith an unspecific shift happening once a week whenever the sensor has to be replaced↩︎\nActually, a third possibility is the extraction of only those empty rows within the CGM block, but losing the context in which they appear is not very practical.↩︎"
+  },
+  {
+    "objectID": "projects/sugr-shiny.html",
+    "href": "projects/sugr-shiny.html",
+    "title": "sugr: make it shiny",
+    "section": "",
+    "text": "tl;dr:\n\nhere’s a shiny app to explore CGM data\nhere’s the code\nsee this post for the data-cleanup procedure"
+  },
+  {
+    "objectID": "projects/sugr-shiny.html#footnotes",
+    "href": "projects/sugr-shiny.html#footnotes",
+    "title": "sugr: make it shiny",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThere is no way to just manually tell the pump to inject insulin and the workaround is to do that via pseudo-carb-intake.↩︎"
   }
 ]
