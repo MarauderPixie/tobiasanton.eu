@@ -14,6 +14,8 @@ execute:
 ::: tldr
 **tl;dr:** Drawing a beautiful map of my hometown Bremen as an exercise in dealing
 with geospatial data. This post is **heavily** inspired by [this one from Timo Grossenbacher](https://timogrossenbacher.ch/bivariate-maps-with-ggplot2-and-sf/).
+
+[Link to the github repository](https://github.com/MarauderPixie/Bremap)
 :::
 
 ![The final Map](static_files/Karte-Bremen.png)
