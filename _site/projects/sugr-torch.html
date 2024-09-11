@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Tobias">
 
-<title>Tobias Anton - Projects</title>
+<title>Tobias Anton - sugr: forecasting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +24,20 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -52,41 +51,10 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-author','listing-title','listing-categories','listing-subtitle','listing-image',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -96,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Tobias Anton</span>
     </a>
   </div>
@@ -106,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -115,17 +83,17 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-cv">    
         <li>
-    <a class="dropdown-item" href="./cv-ta-de.html" rel="" target="">
+    <a class="dropdown-item" href="../cv-ta-de.html" rel="" target="">
  <span class="dropdown-text">Deutsch</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./cv-ta-en.html" rel="" target="">
+    <a class="dropdown-item" href="../cv-ta-en.html" rel="" target="">
  <span class="dropdown-text">English</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="./projects.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../projects.html" rel="" target="">
  <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -154,163 +122,69 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">sugr: forecasting</h1>
+            <p class="subtitle lead">Glucose level forecasting with <code>torch</code></p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">timeseries</div>
+                <div class="quarto-category">medical</div>
+                <div class="quarto-category">ML</div>
+                <div class="quarto-category">forecasting</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Tobias </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">Sep 11, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#beating-a-random-walk" id="toc-beating-a-random-walk" class="nav-link active" data-scroll-target="#beating-a-random-walk">Beating a random walk</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Projects</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<div class="tldr">
+<p><strong>tl;dr:</strong> Using <code>torch</code> to do some forecasting of glucose levels.</p>
+</div>
+<section id="beating-a-random-walk" class="level1">
+<h1>Beating a random walk</h1>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="sf,geospatial,visualisation" data-listing-date-sort="1725832800000" data-listing-file-modified-sort="1726069419495" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9">
-<div class="thumbnail">
-<p><a href="./projects/brem-stylized.html"> <img src="./projects/thumbs/ostvor.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./projects/brem-stylized.html">
-<h3 class="no-anchor listing-title">
-Stylized Map of Bremen
-</h3>
-<div class="listing-subtitle">
-Using publicly available shapefiles and ggplot2
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('sf'); return false;">
-sf
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('geospatial'); return false;">
-geospatial
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('visualisation'); return false;">
-visualisation
-</div>
-</div>
-<a href="./projects/brem-stylized.html"> </a>
-</div>
-<div class="metadata">
-<a href="./projects/brem-stylized.html">
-<div class="listing-date">
-Sep 9, 2024
-</div>
-<div class="listing-author">
-Tobias
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="shiny,timeseries,medical,ETL,visualisation" data-listing-date-sort="1722759472000" data-listing-file-modified-sort="1722759472688" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
-<div class="thumbnail">
-<p><a href="./projects/sugr-shiny.html"> <img src="./projects/thumbs/shiny.png" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./projects/sugr-shiny.html">
-<h3 class="no-anchor listing-title">
-sugr: make it shiny
-</h3>
-<div class="listing-subtitle">
-A shiny app to conveniently browse blood glucose history
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('shiny'); return false;">
-shiny
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('timeseries'); return false;">
-timeseries
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('medical'); return false;">
-medical
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('ETL'); return false;">
-ETL
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('visualisation'); return false;">
-visualisation
-</div>
-</div>
-<a href="./projects/sugr-shiny.html"> </a>
-</div>
-<div class="metadata">
-<a href="./projects/sugr-shiny.html">
-<div class="listing-date">
-Aug 4, 2024
-</div>
-<div class="listing-author">
-Tobias
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="data cleaning,timeseries,medical,ETL" data-listing-date-sort="1681596000000" data-listing-file-modified-sort="1726069081624" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17">
-<div class="thumbnail">
-<p><a href="./projects/sugr-prep.html"> <img src="./projects/thumbs/diabetic.jpg" class="thumbnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./projects/sugr-prep.html">
-<h3 class="no-anchor listing-title">
-sugr: data preparation
-</h3>
-<div class="listing-subtitle">
-Preparation of Continouos Glucose Measurements for usage in a shiny app
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('data cleaning'); return false;">
-data cleaning
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('timeseries'); return false;">
-timeseries
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('medical'); return false;">
-medical
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('ETL'); return false;">
-ETL
-</div>
-</div>
-<a href="./projects/sugr-prep.html"> </a>
-</div>
-<div class="metadata">
-<a href="./projects/sugr-prep.html">
-<div class="listing-date">
-Apr 16, 2023
-</div>
-<div class="listing-author">
-Tobias
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -688,5 +562,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

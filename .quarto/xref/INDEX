@@ -37,5 +37,17 @@
   },
   "projects/spotify.qmd": {
     "spotify.html": "25de46f7"
+  },
+  "projects/sugr-torch.qmd": {
+    "sugr-torch.html": "9059f37e"
+  },
+  "brem-stylized.qmd": {
+    "brem-stylized.html": "6764467e"
+  },
+  "projects/biodiversity.qmd": {
+    "biodiversity.html": "d3fa219d"
+  },
+  "projects/brem-stylized.qmd": {
+    "brem-stylized.html": "e889ab4e"
   }
 }

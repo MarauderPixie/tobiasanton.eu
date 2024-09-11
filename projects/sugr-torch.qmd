@@ -1,0 +1,16 @@
+---
+title: "sugr: forecasting"
+subtitle: "Glucose level forecasting with `torch`"
+categories: [timeseries, medical, ML, forecasting]
+image: "thumbs/torch.png"
+author: "Tobias"
+date: last-modified
+date-format: medium
+draft: true
+---
+
+::: tldr
+**tl;dr:** Using `torch` to do some forecasting of glucose levels.
+:::
+
+# Beating a random walk

@@ -1,0 +1,14 @@
+---
+title: "Interactive Biodiversity Map"
+subtitle: "A simple shiny dashboard using leaflet and some data"
+categories: [shiny, leaflet, life sciences, visualization]
+image: "thumbs/shiny.png"
+author: "Tobias"
+date: "04/16/2023"
+date-format: medium
+draft: true
+---
+
+::: tldr
+**tl;dr:** A fully modularized dashboard with an interactive leaflet map to explore the biodiversity of... the world?
+:::
