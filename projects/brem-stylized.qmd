@@ -18,7 +18,7 @@ with geospatial data. This post is **heavily** inspired by [this one from Timo G
 [Link to the github repository](https://github.com/MarauderPixie/Bremap)
 :::
 
-![The final Map](static_files/Karte-Bremen.png)
+![The final Map](static_files/Karte-Bremen.png){.lightbox}
 
 ## The data
 
