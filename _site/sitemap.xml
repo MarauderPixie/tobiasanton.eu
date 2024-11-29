@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tobiasanton.eu/about.html</loc>
-    <lastmod>2024-09-11T16:10:01.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tobiasanton.eu/index.html</loc>
-    <lastmod>2024-09-11T16:10:01.954Z</lastmod>
+    <loc>https://tobiasanton.eu/projects/sugr-prep.html</loc>
+    <lastmod>2024-11-29T13:19:43.419Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/packages.html</loc>
-    <lastmod>2024-09-11T16:10:02.350Z</lastmod>
+    <lastmod>2024-11-29T13:19:43.396Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tobiasanton.eu/about.html</loc>
+    <lastmod>2024-11-29T13:19:43.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tobiasanton.eu/index.html</loc>
+    <lastmod>2024-11-29T15:13:32.239Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/projects.html</loc>
-    <lastmod>2024-09-11T16:10:03.186Z</lastmod>
+    <lastmod>2024-11-29T13:19:43.396Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/projects/brem-stylized.html</loc>
-    <lastmod>2024-09-11T16:10:04.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tobiasanton.eu/projects/sugr-prep.html</loc>
-    <lastmod>2024-09-11T16:10:07.074Z</lastmod>
+    <lastmod>2024-11-29T13:19:43.398Z</lastmod>
   </url>
   <url>
     <loc>https://tobiasanton.eu/projects/sugr-shiny.html</loc>
-    <lastmod>2024-09-11T16:10:07.546Z</lastmod>
+    <lastmod>2024-11-29T13:19:43.419Z</lastmod>
   </url>
 </urlset>

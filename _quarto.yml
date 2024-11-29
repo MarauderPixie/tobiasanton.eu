@@ -2,12 +2,12 @@ project:
   type: website
   render:
     - "*.qmd"
-    - "!cv-ta-de.Rmd"
-    - "!cv-ta-en.Rmd"
-  resources:
-    - cv-ta-de.html
-    - cv-ta-en.html
-    - cv_files
+  #   - "!cv-ta-de.Rmd"
+  #   - "!cv-ta-en.Rmd"
+  # resources:
+  #   - cv-ta-de.html
+  #   - cv-ta-en.html
+  #   - cv_files
 
 website:
   title: "Tobias Anton"
@@ -20,12 +20,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: CV
-        menu:
-          - href: cv-ta-de.html
-            text: "Deutsch"
-          - href: cv-ta-en.html
-            text: "English"
+      # - text: CV
+      #   menu:
+      #     - href: cv-ta-de.html
+      #       text: "Deutsch"
+      #     - href: cv-ta-en.html
+      #       text: "English"
       - href: projects.qmd
         text: Projects
       # - href: packages.qmd

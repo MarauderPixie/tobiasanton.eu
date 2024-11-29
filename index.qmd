@@ -6,7 +6,7 @@ page-layout: full
 about: 
   id: hero-heading
   template: solana
-  image: itsame.jpg
+  # image: itsame.jpg
   # links:
   #   - icon: github
   #     aria-label: GitHub

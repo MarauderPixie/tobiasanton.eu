@@ -8,6 +8,7 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
+draft: true
 ---
 
 # Aside
@@ -19,7 +20,7 @@ knit: pagedown::chrome_print
 -   <i class="fa fa-envelope"></i> [tobias.anton.85\@gmail.com](mailto:tobias.anton.85@gmail.com){.email}
 -   <i class="fa fa-github"></i> [github.com/marauderpixie](https://github.com/marauderpixie)
 -   <i class="fa fa-globe"></i> [tobiasanton.eu](https://tobiasanton.eu)
--   <i class="fa fa-phone"></i> +49 173-453-5865
+<!--   <i class="fa fa-phone"></i> +49 173-453-5865 -->
 -   Offene Fragen beantworte ich jederzeit gerne.
 
 ## Kompetenzen {#skills}
