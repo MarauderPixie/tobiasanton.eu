@@ -4,7 +4,7 @@ subtitle: "A shiny app to conveniently browse blood glucose history"
 categories: [shiny, timeseries, medical, ETL, visualisation]
 image: "thumbs/shiny.png"
 author: "Tobias"
-date: last-modified
+date: "08/26/2024"
 date-format: medium
 ---
 

@@ -95,7 +95,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "sugr: make it shiny\n\n\nA shiny app to conveniently browse blood glucose history\n\n\n\nshiny\n\n\ntimeseries\n\n\nmedical\n\n\nETL\n\n\nvisualisation\n\n\n\n\n\n\nNov 29, 2024\n\n\nTobias\n\n\n\n\n\n\n\n\n\n\n\n\nStylized Map of Bremen\n\n\nUsing publicly available shapefiles and ggplot2\n\n\n\nsf\n\n\ngeospatial\n\n\nvisualisation\n\n\n\n\n\n\nSep 9, 2024\n\n\nTobias\n\n\n\n\n\n\n\n\n\n\n\n\nsugr: data preparation\n\n\nPreparation of Continouos Glucose Measurements for usage in a shiny app\n\n\n\ndata cleaning\n\n\ntimeseries\n\n\nmedical\n\n\nETL\n\n\n\n\n\n\nApr 16, 2023\n\n\nTobias\n\n\n\n\n\n\nNo matching items"
+    "text": "Stylized Map of Bremen\n\n\nUsing publicly available shapefiles and ggplot2\n\n\n\nsf\n\ngeospatial\n\nvisualisation\n\n\n\n\n\n\nSep 9, 2024\n\n\nTobias\n\n\n\n\n\n\n\n\n\n\n\n\nsugr: make it shiny\n\n\nA shiny app to conveniently browse blood glucose history\n\n\n\nshiny\n\ntimeseries\n\nmedical\n\nETL\n\nvisualisation\n\n\n\n\n\n\nAug 26, 2024\n\n\nTobias\n\n\n\n\n\n\n\n\n\n\n\n\nsugr: data preparation\n\n\nPreparation of Continouos Glucose Measurements for usage in a shiny app\n\n\n\ndata cleaning\n\ntimeseries\n\nmedical\n\nETL\n\n\n\n\n\n\nApr 16, 2023\n\n\nTobias\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/brem-stylized.html",

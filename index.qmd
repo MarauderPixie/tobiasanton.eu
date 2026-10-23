@@ -1,7 +1,7 @@
 ---
 title: Tobias Anton
 description: Data Analysis & R Development
-date: none
+date: today
 page-layout: full
 about: 
   id: hero-heading
