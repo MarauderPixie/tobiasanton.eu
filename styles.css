@@ -45,10 +45,12 @@ h1, h2, h3, h4, h5, h6,
   margin-top: -70px !important;
 }
 
-/* vector heroes scale with the page width instead of being cropped */
+/* vector heroes are scaled down to fit the hero band: the whole
+   graphic stays visible instead of being cropped/zoomed by cover */
 .img-full[src$=".svg"] {
-  height: auto;
+  height: clamp(220px, 38vh, 420px);
   object-fit: contain;
+  object-position: center;
 }
 
 /* navbar matches the page background in either colour scheme,
