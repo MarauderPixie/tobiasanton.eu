@@ -2,8 +2,75 @@
 title: "About"
 ---
 
-About this site
+With a passion for telling stories with data, I'm especially interested
+in data visualisation and the psychological and perceptual pitfalls thereof.
+Please have a look at my github profile or my projects here to get an impression
+of my work.
 
-```{r}
-1 + 1
-```
+## Experience
+
+### Analytics Engineer
+**WESTPRESS GmbH, Hamm** | Team Data Intelligence, Bremen | 2024 - present
+
+- **Recommendation System for Job Advertising Platforms**  
+  Developed a machine learning-based recommendation system to identify the most
+  cost-effective job advertising platforms for different occupational groups.
+  Applied various machine learning techniques, primarily Random Forests, to
+  enrich and analyze large, sparse datasets.
+- **Datawarehouse Engineering**  
+  Implemented and deployed the recommendation system using a range of
+  technologies, including Docker, Bitbucket CI pipelines, Snowflake SQL, and
+  FastAPI for API development and integration.
+- **Market Research and Analysis**  
+  Analyzed the German labor market using key indicators such as unemployment
+  figures, job vacancies and skilled labor demand. Prepared and presented
+  findings for management reports.
+
+### Statistical Programmer
+**Dasta GmbH, Mannheim** | Roche AG, Basel | 2023 - 2024
+
+- **Analysis Ready Data Development**  
+  Author of an R package used for the creation of large scale automated
+  consolidation, transformation and analysis of clinical trials for cancer
+  medication.
+
+### Scientific Assistant
+**Cognitive Modeling Group, IKW** | Universität Osnabrück | 2019 - 2022
+
+- **Online Textbook on _Scientific Data Analysis_** ([link](https://michael-franke.github.io/intro-data-analysis/))  
+  Responsible for the compilation and continuous integration of Rmarkdown,
+  LaTeX and JavaScript to PDF and HTML
+- **Advanced Bayesian Data Analysis**  
+  Conception, creation and grading of practical bi-weekly exercises in the form
+  of Rmarkdown documents
+- **Experimental Psychology Lab**  
+  Supervision of scientific online experiments for replication by students as
+  well as teaching of open science practices and mentoring on statistical data
+  analysis
+- **Introduction to Data Analysis**  
+  Similar to _Quantitative Methods I & II_ (see below) with stronger focus on
+  working with R, data visualization and "tidy data" principles
+
+### Student Assistant
+**FB 11 - Humanwissenschaften** | Universität Bremen | 2015 - 2021
+
+- **Quantitative Methods I & II**  
+  Independent teaching of the fundamentals of inferential and descriptive
+  statistics, as well as detailed and advanced discussion of weekly assignments
+- **Experimental Practical Course**  
+  Supervision of student groups in finding, planning, conducting and analyzing
+  an experimental research topic
+- **Statistical Programming with R** ([link](https://r-intro.tadaa-data.de/))  
+  Annual block course in lecture format
+- _Statistical Data Analysis (R)_ for the Bachelor of Public Health program
+
+### Stagehand
+**Städtische Bühnen Osnabrück (municipal theater), among others** | until 2016
+
+## Education
+
+**M. Sc. Cognitive Science** | Artificial Intelligence & Cognitive Psychology  
+Universität Osnabrück | Oct 2018 - Dec 2022
+
+**B. Sc. Psychology** | Work- and Organisational Psychology and Neuroscience  
+Universität Bremen | Oct 2014 - June 2018

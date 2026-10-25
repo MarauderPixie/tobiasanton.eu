@@ -4,11 +4,11 @@ author: Tobias Anton
 date: "`r format(Sys.time(), '%d. %b, %Y')`"
 output:
   pagedown::html_resume:
+    css: ['resume', 'cv.css']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
-draft: true
 ---
 
 # Aside
@@ -17,103 +17,147 @@ draft: true
 
 ## Contact Info {#contact}
 
--   <i class="fa fa-envelope"></i> [tobias.anton.85\@gmail.com](mailto:tobias.anton.85@gmail.com){.email}
+-   <i class="fa fa-envelope"></i> [tobias.anton\@mailbox.org](mailto:tobias.anton@mailbox.org){.email}
 -   <i class="fa fa-github"></i> [github.com/marauderpixie](https://github.com/marauderpixie)
 -   <i class="fa fa-globe"></i> [tobiasanton.eu](https://tobiasanton.eu)
-<!--   <i class="fa fa-phone"></i> +49 173-453-5865 -->
+-   <i class="fa fa-phone"></i> +49 173 453 5865
 -   For more information, please contact me via email.
 
 ## Skills {#skills}
 
--   Advanced experience in bayesian and frequentist statistical analysis and modeling
+-   Highly skilled in R, Git, SQL, Stan, R-Shiny, Continuous Integration and automated reporting
 
--   Passionate about data visualization, exploration and communication
+-   Advanced experience in Bayesian statistical analysis and modeling
 
--   Highly skilled in R, R-Shiny, Stan, Continuous Integration and LaTeX
+-   Passionate about open science and science communication
+
+-   Fluent in English (C1+) and native German speaker
 
 ## Disclaimer {#disclaimer}
 
 <!-- This resume was made with the R package [**pagedown**](https://github.com/rstudio/pagedown). -->
 
-Last updated on `r format(Sys.time(), '%d. %b, %Y')`.
+Bremen, `r format(Sys.time(), '%d. %b, %Y')`
 
 # Main
 
-## Tobias Anton {#title}
+## Curriculum Vitae {#title}
 
-### Currently looking for a full-time position in Data Science
+## Professional Experience {data-icon="suitcase"}
+
+### Analytics Engineer
+
+Team Data Intelligence, Bremen
+
+WESTPRESS GmbH, Hamm
+
+current - 2024
+
+- **Recommendation System for Job Advertising Platforms**  
+  Developed a machine learning-based recommendation system to identify the most cost-effective 
+  job advertising platforms for different occupational groups. Applied various machine learning 
+  techniques, primarily Random Forests, to enrich and analyze large, sparse datasets.
+- **Datawarehouse Engineering**  
+  Implemented and deployed the recommendation system using a range of technologies, including 
+  Docker, Bitbucket CI pipelines, Snowflake SQL, and FastAPI for API development and integration.
+- **Market Research and Analysis**  
+  Analyzed the German labor market using key indicators such as unemployment figures, 
+  job vacancies and skilled labor demand. Prepared and presented findings for management reports.
+
+### Statistical Programmer
+
+Roche AG, Basel
+
+Dasta GmbH, Mannheim
+
+2024 - 2023
+
+-  **Analysis Ready Data Development**  
+   Author of an R Package to be used for the creation of large scale automated consolidation, 
+   transformation and analysis of clinical trials for cancer medication.
+
+### Scientific Assistant
+
+Cognitive Modeling Group, IKW
+
+Uni Osnabrück, Deutschland
+
+2022 - 2019
+
+-   **Online Textbook on _Scientific Data Analysis_** ([link](https://michael-franke.github.io/intro-data-analysis/))  
+    Responsible for the compilation and continuous integration of Rmarkdown,
+    LaTeX and Javascript to PDF and HTML
+-   **Advanced Bayesian Data Analysis**  
+    Conception, creation and grading of practical bi-weekly exercises in the form of Rmarkdown documents
+-   **Experimental Psychology Lab**  
+    Supervision of scientific online experiments for replication by students
+    as well as teaching of open science practices and mentoring on statistical data
+    analysis
+-   **Introduction to Data Analysis**  
+    Similiar to _Quantitative Methods I & II_ (see below) with stronger focus on 
+    working with R, data visualization and "tidy data" principles
+
+### Student Assistant
+
+FB 11 - Humanwissenschaften
+
+Uni Bremen, Deutschland
+
+2021 - 2015
 
 ::: {style="text-align: justify;"}
-After finishing my master's I'm thrilled to dive into the vast field of data science. My strong suits are the planning and execution of rigorous experimental setups, the exploration and analysis of structured and unstructured data as well as automated reporting on the results. I invite you to visit my website to get an impression of my work.
+- **Quantitative Methods I & II**  
+  Independent teaching of the fundamentals of inferential and descriptive statistics, 
+  as well as detailed and advanced discussion of weekly assignments
+- **Experimental Practical Course**  
+  Supervision of student groups in finding, planning, conducting and analyzing an
+  experimental research topic
+- **Statistical Programming with R** ([link](https://r-intro.tadaa-data.de/))  
+  Annual block course in lecture format
+- _Statistical Data Analysis (R)_ for the Bachelor of Public Health program
 :::
 
-## Education {data-icon="graduation-cap" data-concise="true"}
+### Stagehand
 
-### Universität Osnabrück
-
-**M.Sc. in Cognitive Science**\
-major topics: Artificial Intelligence and Cognitive Psychology
+Städtische Bühnen Osnabrück (municipal theater), among others
 
 Osnabrück, Germany
 
+until 2016
+
+
+## Education {data-icon="graduation-cap" data-concise="true"}
+
+### M.Sc. in Cognitive Science
+
+Artificial Intelligence und Cognitive Psychology
+
+Universität Osnabrück, Germany
+
 2022
 
-Thesis: *On the role of rule instructions and ordering in category learning*
+Thesis: *On the role of rule instructions and ordering in category learning* (Grade: 1.4)
 
-### Universität Bremen
+### B.Sc. in Psychologie
 
-**B.Sc. in Psychology**\
-major topics: Work & Organizational Psychology and Neuroscience
+Work- & Organisational Psychology and Neuroscience
 
-Bremen, Germany
+Universität Bremen, Germany
 
 2018
 
-Thesis: *Feedback-modulierte quasi-realistische binäre Entscheidungen in einem wetterbasierten Kontext*
+Thesis: *Feedback-modulierte quasi-realistische binäre Entscheidungen in einem wetterbasierten Kontext* (Grade: 1.0)
 
-### Abendgymnasium Sophie Scholl
+### Abitur (High School Diploma)
 
-**High School Diploma** / Abitur
+on the second educational path at the Abendgymnasium Sophie Scholl
 
 Osnabrück, Germany
 
 2014
 
-## Professional Experience {data-icon="suitcase"}
 
-### Scientific Assistant
 
-at the Cognitive Modeling Group, Uni Osnabrück\
-- Collaboration in the writing of an online-textbook on Scientific Data Analysis ([link](https://michael-franke.github.io/intro-data-analysis/))\
-- Tutor on Advanced Bayesian Data Analysis\
-- Tutor on Experimental Psychology Lab\
-- Tutor on Introduction to Data Analysis\
-- Implementation of online experiments\
-- Research on scientific articles for replication by students
-
-Osnabrück, Germany
-
-2019 - 2022
-
-### Student Assistant
-
-at Fachbereich 11 of Uni Bremen\
-- Tutor on Statistics I & II\
-- Tutor on Experimental Practice\
-- Lectures in Statistical Programming with R ([link](https://r-intro.tadaa-data.de/))\
-- Tutor on Statistical Data Analysis (R)
-
-Bremen, Germany
-
-2015 - 2021
-
-### Stagehand
-
-Städtische Bühnen Osnabrück, among others
-
-Osnabrück, Germany
-
-until 2016
 
 ```{=html}
 <!-- Additional Skills {data-icon=screwdriver-wrench}
@@ -135,5 +179,13 @@ ongoing
 The Internet
 
 ongoing
+
+
+## Transcript of Records {data-icon=screwdriver-wrench}
+
+- Bayesian Data Analysis and Cognitive Modeling
+- Implementing Artificial Neural Networks with TensorFlow
+- Time Series Analysis and Forecasting
+- Application of Deep Learning with Limited Labeled Data
 -->
 ```

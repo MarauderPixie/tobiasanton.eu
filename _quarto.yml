@@ -46,7 +46,7 @@ format:
     theme:
       dark: solar
       light: pulse
-    mainfont: Titillium Web
+    mainfont: Lato
     monofont: Fira Code
     css: styles.css
     toc: true

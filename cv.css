@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Raleway:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap');
+
+/* Styling for the pagedown CV (fonts: Raleway & Lato; colours: #f1501b / #d44500) */
+
+:root {
+  --sidebar-background-color: #f7f7f8;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #111111;
+}
+
+#title {
+  position: relative;
+  left: 0.55in;
+  margin: auto 0.42in 0.3in auto;
+  line-height: 1.2;
+}
+
+#title h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+#main h2,
+.aside h2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: #000000;
+}
+
+#main h2 i,
+.aside h2 i {
+  color: #f1501b;
+}
+
+.details h3 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Ensure bullet item titles and all strong tags are bold */
+strong,
+b,
+#main li strong {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700 !important;
+  color: #000000;
+}
+
+/* Links & contact accent colours */
+a {
+  color: #d44500;
+}
+
+a:hover {
+  color: #f1501b;
+}
+
+#contact li > i {
+  color: #f1501b;
+}
+
+/* Timeline dot */
+.decorator::after {
+  background-color: #f1501b;
+}
+
+.details .location {
+  color: #444444;
+}
+
+.details .location i {
+  color: #f1501b;
+}
+
+.date {
+  color: #555555;
+  font-family: 'Lato', sans-serif;
+}
+
+#disclaimer {
+  color: #666666;
+  font-family: 'Lato', sans-serif;
+}

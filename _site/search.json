@@ -67,7 +67,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "With a passion for telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Please have a look at my github profile or my projects here to get an impression of my work."
   },
   {
     "objectID": "CopyOfindex.html",
@@ -95,7 +95,7 @@
     "href": "index.html",
     "title": "Tobias Anton",
     "section": "",
-    "text": "Data Analysis & R Development\n   \n\n\nProjects\n\n\nPackages\n\n\nAbout\n\n\nGitHub\n\n\nWith a passion for telling stories with data, I’m especially interested in data visualisation and the psychological and perceptual pitfalls thereof. Please have a look at my github profile or my projects here to get an impression of my work.\n\n\nAnalysis Ready Data Development | Data Scientist / R-Developer | June 2023 - Aug 2024\nAdvanced Bayesian Data Analysis | Research Assistant / Tutor | April 2021 - Sept 2021\nQuantitative Methods I & II | Lecturer / Tutor | Oct 2015 - Sept 2018\n\n\n\nM. Sc. Cogntive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018"
+    "text": "Tobias Anton\nData Analysis & R Development\n   \n\n\nProjects\n\n\nPackages\n\n\nAbout\n\n\nGitHub"
   },
   {
     "objectID": "index.html#experience",
@@ -173,5 +173,19 @@
     "title": "sugr: make it shiny",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nThere is no way to just manually tell the pump to inject insulin and the workaround is to do that via pseudo-carb-intake.↩︎"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "About",
+    "section": "Experience",
+    "text": "Experience\n\nAnalytics Engineer\nWESTPRESS GmbH, Hamm | Team Data Intelligence, Bremen | 2024 - present\n\nRecommendation System for Job Advertising Platforms\nDeveloped a machine learning-based recommendation system to identify the most cost-effective job advertising platforms for different occupational groups. Applied various machine learning techniques, primarily Random Forests, to enrich and analyze large, sparse datasets.\nDatawarehouse Engineering\nImplemented and deployed the recommendation system using a range of technologies, including Docker, Bitbucket CI pipelines, Snowflake SQL, and FastAPI for API development and integration.\nMarket Research and Analysis\nAnalyzed the German labor market using key indicators such as unemployment figures, job vacancies and skilled labor demand. Prepared and presented findings for management reports.\n\n\n\nStatistical Programmer\nDasta GmbH, Mannheim | Roche AG, Basel | 2023 - 2024\n\nAnalysis Ready Data Development\nAuthor of an R package used for the creation of large scale automated consolidation, transformation and analysis of clinical trials for cancer medication.\n\n\n\nScientific Assistant\nCognitive Modeling Group, IKW | Universität Osnabrück | 2019 - 2022\n\nOnline Textbook on Scientific Data Analysis (link)\nResponsible for the compilation and continuous integration of Rmarkdown, LaTeX and JavaScript to PDF and HTML\nAdvanced Bayesian Data Analysis\nConception, creation and grading of practical bi-weekly exercises in the form of Rmarkdown documents\nExperimental Psychology Lab\nSupervision of scientific online experiments for replication by students as well as teaching of open science practices and mentoring on statistical data analysis\nIntroduction to Data Analysis\nSimilar to Quantitative Methods I & II (see below) with stronger focus on working with R, data visualization and “tidy data” principles\n\n\n\nStudent Assistant\nFB 11 - Humanwissenschaften | Universität Bremen | 2015 - 2021\n\nQuantitative Methods I & II\nIndependent teaching of the fundamentals of inferential and descriptive statistics, as well as detailed and advanced discussion of weekly assignments\nExperimental Practical Course\nSupervision of student groups in finding, planning, conducting and analyzing an experimental research topic\nStatistical Programming with R (link)\nAnnual block course in lecture format\nStatistical Data Analysis (R) for the Bachelor of Public Health program\n\n\n\nStagehand\nStädtische Bühnen Osnabrück (municipal theater), among others | until 2016"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nM. Sc. Cognitive Science | Artificial Intelligence & Cognitive Psychology\nUniversität Osnabrück | Oct 2018 - Dec 2022\nB. Sc. Psychology | Work- and Organisational Psychology and Neuroscience\nUniversität Bremen | Oct 2014 - June 2018"
   }
 ]

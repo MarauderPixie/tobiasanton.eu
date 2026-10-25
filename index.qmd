@@ -35,27 +35,4 @@ title-block-style: none
 :::
 :::
 
-With a passion for telling stories with data, I'm especially interested 
-in data visualisation and the psychological and perceptual pitfalls thereof. 
-Please have a look at my github profile or my projects here to get an impression 
-of my work.
-
-
-
-## Experience
-
-**Analysis Ready Data Development | Data Scientist / R-Developer | June 2023 - Aug 2024**
-
-Advanced Bayesian Data Analysis | Research Assistant / Tutor | April 2021 - Sept 2021
-
-Quantitative Methods I & II | Lecturer / Tutor | Oct 2015 - Sept 2018
-
-## Education
-
-**M. Sc. Cogntive Science** | Artificial Intelligence & Cognitive Psychology  
-Universität Osnabrück | Oct 2018 - Dec 2022
-
-**B. Sc. Psychology** | Work- and Organisational Psychology and Neuroscience  
-Universität Bremen | Oct 2014 - June 2018
-
 :::
