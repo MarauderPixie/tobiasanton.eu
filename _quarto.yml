@@ -39,14 +39,14 @@ website:
         href: https://norden.social/@marauderpixie
       - icon: envelope-fill
         aria-label: E-Mail
-        href: "mailto:tobanton@uni-osnabrueck.de"
+        href: "mailto:tobias.anton.85@gmail.com"
 
 format:
   html:
     theme:
-      dark: darkly
-      light: litera
-    mainfont: Klavika
+      dark: solar
+      light: pulse
+    mainfont: Titillium Web
     monofont: Fira Code
     css: styles.css
     toc: true
