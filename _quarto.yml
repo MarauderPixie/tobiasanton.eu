@@ -30,8 +30,8 @@ website:
 format:
   html:
     theme:
-      dark: solar
       light: pulse
+      dark: solar
     mainfont: Lato
     monofont: Fira Code
     css: styles.css
