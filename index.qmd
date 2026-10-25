@@ -22,7 +22,7 @@ about:
   #     href: https://norden.social/@marauderpixie
   #   - icon: envelope
   #     aria-label: E-Mail
-  #     href: "mailto:tobanton@uni-osnabrueck.de"
+  #     href: "mailto:tobias.anton.85@gmail.com"
 ---
 
 :::{#hero-heading}
@@ -31,7 +31,7 @@ about:
 [{{< ai osf size=2x >}}](https://osf.io/mq7zh)
 [{{< fa brands linkedin size=2x >}}](https://www.linkedin.com/in/tobias-anton-a163a4252/)
 [{{< fa brands github size=2x >}}](https://github.com/marauderpixie)
-[{{< fa solid envelope size=2x >}}](mailto:tobias.anton@businesspartner.roche.com)
+[{{< fa solid envelope size=2x >}}](mailto:tobias.anton.85@gmail.com)
 :::
 
 With a passion for telling stories with data, I'm especially interested 
