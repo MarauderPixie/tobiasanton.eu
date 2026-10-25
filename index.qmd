@@ -17,6 +17,7 @@ title-block-style: none
 
 [{{< fa brands github size=2x >}}](https://github.com/marauderpixie){.icon}
 [{{< fa brands linkedin size=2x >}}](https://www.linkedin.com/in/tobias-anton-a163a4252/){.icon}
+[{{< fa brands mastodon size=2x >}}](https://norden.social/@marauderpixie){.icon}
 [{{< ai osf size=2x >}}](https://osf.io/mq7zh){.icon}
 [{{< fa solid envelope size=2x >}}](mailto:tobias.anton.85@gmail.com){.icon}
 

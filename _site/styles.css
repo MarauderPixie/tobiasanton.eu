@@ -2,6 +2,17 @@
 
 /* css styles */
 
+/* centre the homepage hero block */
+.center {
+  text-align: center;
+}
+
+/* let the hero text span the full page width instead of Quarto's
+   narrower body column (which is offset by the empty TOC margin) */
+.center > section {
+  grid-column: screen-start / screen-end;
+}
+
 /* Fonts used across the whole site: Lato for text, Raleway for headings */
 body {
   font-family: 'Lato', sans-serif;

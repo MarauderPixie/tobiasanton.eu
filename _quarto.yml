@@ -17,29 +17,15 @@ website:
     center: --- All Rites Reversed. Beware of Sleestak! ---
   navbar:
     background: "#168A84"
-    left:
+    right:
       - href: index.qmd
         text: Home
-      # - text: CV
-      #   menu:
-      #     - href: cv-ta-de.html
-      #       text: "Deutsch"
-      #     - href: cv-ta-en.html
-      #       text: "English"
+      - href: about.qmd
+        text: About
       - href: projects.qmd
         text: Projects
-      # - href: packages.qmd
-      #   text: R Packages
-    right:
-      - icon: github
-        aria-label: GitHub
-        href: https://github.com/marauderpixie
-      - icon: mastodon
-        aria-label: Mastodon
-        href: https://norden.social/@marauderpixie
-      - icon: envelope-fill
-        aria-label: E-Mail
-        href: "mailto:tobias.anton.85@gmail.com"
+      - href: packages.qmd
+        text: Packages
 
 format:
   html:
