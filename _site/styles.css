@@ -63,12 +63,28 @@ h1, h2, h3, h4, h5, h6,
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .homeicon-link:hover {
   background-color: #f2f4f8;
   color: #168A84;
   border-color: #168A84;
+}
+
+/* dark-mode variant: use the solar palette instead of white buttons */
+body.quarto-dark .homeicon-link {
+  background-color: #073642;
+  color: #2aa198;
+  border-color: #2aa198 !important;
+}
+
+body.quarto-dark .homeicon-link:hover {
+  background-color: rgba(42, 161, 152, 0.20);
+  color: #2aa198;
+  border-color: #2aa198;
 }
 
 /* icon row */
