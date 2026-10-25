@@ -8,7 +8,7 @@ title-block-style: none
 ::: {.center .page-columns .page-full}
 
 ::: {.column-screen}
-![](assets/hero.jpg){.img-full}
+![](hexagons.svg){.img-full}
 :::
 
 # Tobias Anton {.title}
@@ -22,17 +22,14 @@ title-block-style: none
 [{{< fa solid envelope size=2x >}}](mailto:tobias.anton.85@gmail.com){.icon}
 
 ::: {.grid .gridClass}
-::: {.g-col-12 .g-col-md-3}
-[Projects](projects.qmd){.homeicon-link}
-:::
-::: {.g-col-12 .g-col-md-3}
-[Packages](packages.qmd){.homeicon-link}
-:::
-::: {.g-col-12 .g-col-md-3}
+::: {.g-col-12 .g-col-md-4}
 [About](about.qmd){.homeicon-link}
 :::
-::: {.g-col-12 .g-col-md-3}
-[GitHub](https://github.com/marauderpixie){.homeicon-link}
+::: {.g-col-12 .g-col-md-4}
+[Projects](projects.qmd){.homeicon-link}
+:::
+::: {.g-col-12 .g-col-md-4}
+[Packages](packages.qmd){.homeicon-link}
 :::
 :::
 

@@ -16,7 +16,7 @@ website:
   page-footer:
     center: --- All Rites Reversed. Beware of Sleestak! ---
   navbar:
-    background: "#168A84"
+    background: "#ffffff"
     right:
       - href: index.qmd
         text: Home
