@@ -45,11 +45,11 @@ h1, h2, h3, h4, h5, h6,
   margin-top: -70px !important;
 }
 
-/* vector heroes are scaled down to fit the hero band: the whole
-   graphic stays visible instead of being cropped/zoomed by cover */
+/* the hexagon hero is drawn at the band's own aspect ratio, so covering
+   the band fills it edge to edge without enlarging the cells; any trim
+   just removes a few rows/columns of the repeating pattern */
 .img-full[src$=".svg"] {
-  height: clamp(220px, 38vh, 420px);
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
